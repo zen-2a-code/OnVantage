@@ -8,5 +8,5 @@
 import Foundation
 
 enum AttemptStatus: String, Codable {
-    case success, failure
+    case completed, skipped
 }
