@@ -40,3 +40,5 @@ fastlane/test_output
 ## --- OTHERS ---
 *.temp
 *.tmp
+CLAUDE.md
+Planning/
