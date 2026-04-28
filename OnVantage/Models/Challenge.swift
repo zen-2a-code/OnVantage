@@ -32,14 +32,3 @@ class Challenge {
         self.attempts = attempts
     }
 }
-
-//Challenge
-//├── id: UUID
-//├── title: String
-//├── conceptExplanation: String
-//├── taskDescription: String
-//├── difficulty: Int                    (schema-only in MVP, 1–3)
-//├── isUserCreated: Bool
-//├── createdAt: Date
-//├── category: Category
-//└── attempts: [ChallengeAttempt]       (one-to-many)

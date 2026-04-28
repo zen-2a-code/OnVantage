@@ -20,11 +20,12 @@ class CategoryProgress {
     var cycleStartedAt: Date
     var cycleNumber: Int
     var shuffledOrder: [UUID]
+    var isOrdered: Bool
     var notificationEnabled: Bool
     var notificationHour: Int?
     var notificationMinute: Int?
     
-    init(id: UUID = UUID(), category: Category, currentStreak: Int, longestStreak: Int, lastCompletedDate: Date? = nil, totalCompleted: Int, skipsRemainingThisCycle: Int, cycleStartedAt: Date, cycleNumber: Int, shuffledOrder: [UUID], notificationEnabled: Bool, notificationHour: Int? = nil, notificationMinute: Int? = nil) {
+    init(id: UUID = UUID(), category: Category, currentStreak: Int, longestStreak: Int, lastCompletedDate: Date? = nil, totalCompleted: Int, skipsRemainingThisCycle: Int, cycleStartedAt: Date, cycleNumber: Int, shuffledOrder: [UUID], isOrdered: Bool = false , notificationEnabled: Bool, notificationHour: Int? = nil, notificationMinute: Int? = nil) {
         self.id = id
         self.category = category
         self.currentStreak = currentStreak
@@ -35,6 +36,7 @@ class CategoryProgress {
         self.cycleStartedAt = cycleStartedAt
         self.cycleNumber = cycleNumber
         self.shuffledOrder = shuffledOrder
+        self.isOrdered = isOrdered
         self.notificationEnabled = notificationEnabled
         self.notificationHour = notificationHour
         self.notificationMinute = notificationMinute
