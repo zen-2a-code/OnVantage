@@ -10,12 +10,14 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
+    @Query var categories: [Category]
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+            Text("\(categories.count)")
         }
         .padding()
         .onAppear {
@@ -25,5 +27,16 @@ struct ContentView: View {
 }
 
 #Preview {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    
+    let container = try! ModelContainer(
+        for: Category.self,
+            CategoryProgress.self,
+            Challenge.self,
+            ChallengeAttempt.self,
+        configurations: config   
+    )
+    
     ContentView()
+        .modelContainer(container)
 }

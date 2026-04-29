@@ -14,7 +14,7 @@ enum SeedImporter {
 
         let jsonDecoder = JSONDecoder()
 
-        guard let seedURL = Bundle.main.url(forResource: "seed_swiftui",withExtension: "json") else {
+        guard let seedURL = Bundle.main.url(forResource: "seed_swiftui", withExtension: "json") else {
             fatalError("Missing seed JSON file")
         }
         
@@ -22,14 +22,14 @@ enum SeedImporter {
             fatalError("Could not read seed file")
         }
         
-        guard let seedCategoryDTO = try? jsonDecoder.decode(SeedCategoryDTO.self, from: seedData) else {
+        guard let seedFileDTO = try? jsonDecoder.decode(SeedFileDTO.self, from: seedData) else {
             fatalError("Could not decode seed JSON")
         }
         
         let swiftCategory = Category(
-            name: seedCategoryDTO.name,
-            colorHex: seedCategoryDTO.colorHex,
-            iconName: seedCategoryDTO.iconName,
+            name: seedFileDTO.category.name,
+            colorHex: seedFileDTO.category.colorHex,
+            iconName: seedFileDTO.category.iconName,
             isActive: true,
             isUserCreated: false,
             createdAt: .now
@@ -37,7 +37,7 @@ enum SeedImporter {
         
         var challengesList = [Challenge]()
         var challengesUUIDS = [UUID]()
-        for seedCategoryChallenge in seedCategoryDTO.challenges {
+        for seedCategoryChallenge in seedFileDTO.challenges {
             let challenge = Challenge(
                 title: seedCategoryChallenge.title,
                 conceptExplanation: seedCategoryChallenge
@@ -67,14 +67,18 @@ enum SeedImporter {
     }
 }
 
+struct SeedFileDTO: Codable {
+    var category: SeedCategoryDTO
+    var challenges: [SeedChallangeDTO]
+}
+
 struct SeedCategoryDTO: Codable {
     var name: String
     var colorHex: String
     var iconName: String
-    var challenges: [SeedChallangesDTO]
 }
 
-struct SeedChallangesDTO: Codable {
+struct SeedChallangeDTO: Codable {
     var title: String
     var conceptExplanation: String
     var taskDescription: String
