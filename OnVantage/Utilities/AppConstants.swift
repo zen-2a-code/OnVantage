@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AppConstants: CaseIterable {
+enum AppConstants {
     static let categoryColors: [String] = [
         "#007AFF", // Blue
         "#FF3B30", // Red

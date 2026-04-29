@@ -17,10 +17,10 @@ class Category {
     var isActive: Bool
     var isUserCreated: Bool
     var createdAt: Date
-    var challenges: [Challenge]
+    var challenges: [Challenge] = []
     var progress: CategoryProgress?
     
-    init(id: UUID = UUID(), name: String, colorHex: String, iconName: String, isActive: Bool, isUserCreated: Bool, createdAt: Date, challenges: [Challenge], progress: CategoryProgress? = nil) {
+    init(id: UUID = UUID(), name: String, colorHex: String, iconName: String, isActive: Bool, isUserCreated: Bool, createdAt: Date, challenges: [Challenge] = [], progress: CategoryProgress? = nil) {
         self.id = id
         self.name = name
         self.colorHex = colorHex
