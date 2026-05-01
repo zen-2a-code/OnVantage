@@ -5,8 +5,8 @@
 //  Created by Stoyan Hristov on 28.04.26.
 //
 
-import SwiftData
 import Foundation
+import SwiftData
 
 @Model
 class Category {
@@ -19,7 +19,7 @@ class Category {
     var createdAt: Date
     var challenges: [Challenge] = []
     var progress: CategoryProgress?
-    
+
     init(id: UUID = UUID(), name: String, colorHex: String, iconName: String, isActive: Bool, isUserCreated: Bool, createdAt: Date, challenges: [Challenge] = [], progress: CategoryProgress? = nil) {
         self.id = id
         self.name = name

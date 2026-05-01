@@ -17,7 +17,7 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
-            Text("\(categories.count)")
+            Text("\(categories.first?.colorHex)")
         }
         .padding()
         .onAppear {
@@ -28,15 +28,15 @@ struct ContentView: View {
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    
+
     let container = try! ModelContainer(
         for: Category.self,
-            CategoryProgress.self,
-            Challenge.self,
-            ChallengeAttempt.self,
-        configurations: config   
+        CategoryProgress.self,
+        Challenge.self,
+        ChallengeAttempt.self,
+        configurations: config
     )
-    
+
     ContentView()
         .modelContainer(container)
 }

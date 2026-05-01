@@ -1,12 +1,12 @@
 //
-//  Challange.swift
+//  Challenge.swift
 //  OnVantage
 //
 //  Created by Stoyan Hristov on 28.04.26.
 //
 
-import SwiftData
 import Foundation
+import SwiftData
 
 @Model
 class Challenge {
@@ -19,7 +19,7 @@ class Challenge {
     var createdAt: Date
     var category: Category
     var attempts: [ChallengeAttempt] = []
-    
+
     init(id: UUID = UUID(), title: String, conceptExplanation: String, taskDescription: String, difficulty: Int, isUserCreated: Bool, createdAt: Date, category: Category, attempts: [ChallengeAttempt] = []) {
         self.id = id
         self.title = title

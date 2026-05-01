@@ -17,15 +17,15 @@ enum SeedImporter {
         guard let seedURL = Bundle.main.url(forResource: "seed_swiftui", withExtension: "json") else {
             fatalError("Missing seed JSON file")
         }
-        
+
         guard let seedData = try? Data(contentsOf: seedURL) else {
             fatalError("Could not read seed file")
         }
-        
+
         guard let seedFileDTO = try? jsonDecoder.decode(SeedFileDTO.self, from: seedData) else {
             fatalError("Could not decode seed JSON")
         }
-        
+
         let swiftCategory = Category(
             name: seedFileDTO.category.name,
             colorHex: seedFileDTO.category.colorHex,
@@ -34,7 +34,7 @@ enum SeedImporter {
             isUserCreated: false,
             createdAt: .now
         )
-        
+
         var challengesList = [Challenge]()
         var challengesUUIDS = [UUID]()
         for seedCategoryChallenge in seedFileDTO.challenges {
@@ -48,20 +48,20 @@ enum SeedImporter {
                 createdAt: .now,
                 category: swiftCategory
             )
-            
+
             challengesUUIDS.append(challenge.id)
             challengesList.append(challenge)
         }
-        
+
         swiftCategory.challenges = challengesList
-        
+
         let categoryProgress = CategoryProgress(
             category: swiftCategory,
             cycleStartedAt: .now
         )
         categoryProgress.shuffledOrder = challengesUUIDS.shuffled()
         swiftCategory.progress = categoryProgress
-        
+
         context.insert(swiftCategory)
         UserDefaults.standard.set(true, forKey: "didSeedV1")
     }
