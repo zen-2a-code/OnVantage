@@ -16,7 +16,7 @@ enum CycleManager {
     /// Call this when a category is first created.
     ///
     /// - Parameter progress: The ``CategoryProgress`` to mutate.
-    static func shuffleOrder(for progress: CategoryProgress) {
+    static func buildQueue(for progress: CategoryProgress) {
         var challengesUUIDs = progress.category.challenges.map { challenge in
             challenge.id
         }
