@@ -20,7 +20,7 @@ class CategoryProgress {
     var skipsRemainingThisCycle: Int = 3
     var cycleStartedAt: Date
     var cycleNumber: Int = 1
-    var shuffledOrder: [UUID] = []
+    var challengeQueueOrder: [UUID] = []
     var isOrdered: Bool
     var notificationEnabled: Bool = false
     var notificationHour: Int?
@@ -31,7 +31,7 @@ class CategoryProgress {
         self.category = category
         self.lastCompletedDate = lastCompletedDate
         self.cycleStartedAt = cycleStartedAt
-        self.shuffledOrder = shuffledOrder
+        self.challengeQueueOrder = shuffledOrder
         self.isOrdered = isOrdered
         self.notificationEnabled = notificationEnabled
         self.notificationHour = notificationHour

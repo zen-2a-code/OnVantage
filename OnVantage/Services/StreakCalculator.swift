@@ -12,9 +12,9 @@ enum StreakCalculator {
     ///
     /// Call this method only when the user taps "Mark Complete".
     /// The streak logic is based on `lastCompletedDate` and `lastActivityDate`:
-    /// - Same day completion - ignored, no changes ( no streak increase - only 1 complated challange per category advances the streak )
+    /// - Same day completion - ignored, no changes ( no streak increase - only 1 complated challenge per category advances the streak )
     /// - First ever completion -  streak starts at 1
-    /// - If there was a Completed challange yesterday - streak advances
+    /// - If there was a Completed challenge yesterday - streak advances
     /// - No completion yesterday but a skip was used - streak survives to today, advances due to today's completion
     /// - No activity yesterday nor `lastCompletedDate` or `lastActivityDate`: - streak resets to 1
     ///
