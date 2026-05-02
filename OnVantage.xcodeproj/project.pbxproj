@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		9EE63C3B2FA6317F009D82E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9ECB31E52FA0A8D300CECAA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9ECB31EC2FA0A8D300CECAA9;
+			remoteInfo = OnVantage;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		9ECB31ED2FA0A8D300CECAA9 /* OnVantage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnVantage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE63C372FA6317F009D82E0 /* OnVantageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnVantageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = OnVantage;
 			sourceTree = "<group>";
 		};
+		9EE63C382FA6317F009D82E0 /* OnVantageTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = OnVantageTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9ECB31EA2FA0A8D300CECAA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EE63C342FA6317F009D82E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				9ECB31EF2FA0A8D300CECAA9 /* OnVantage */,
+				9EE63C382FA6317F009D82E0 /* OnVantageTests */,
 				9ECB31EE2FA0A8D300CECAA9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				9ECB31ED2FA0A8D300CECAA9 /* OnVantage.app */,
+				9EE63C372FA6317F009D82E0 /* OnVantageTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 9ECB31ED2FA0A8D300CECAA9 /* OnVantage.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9EE63C362FA6317F009D82E0 /* OnVantageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9EE63C3D2FA6317F009D82E0 /* Build configuration list for PBXNativeTarget "OnVantageTests" */;
+			buildPhases = (
+				9EE63C332FA6317F009D82E0 /* Sources */,
+				9EE63C342FA6317F009D82E0 /* Frameworks */,
+				9EE63C352FA6317F009D82E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9EE63C3C2FA6317F009D82E0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9EE63C382FA6317F009D82E0 /* OnVantageTests */,
+			);
+			name = OnVantageTests;
+			packageProductDependencies = (
+			);
+			productName = OnVantageTests;
+			productReference = 9EE63C372FA6317F009D82E0 /* OnVantageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					9ECB31EC2FA0A8D300CECAA9 = {
 						CreatedOnToolsVersion = 26.4.1;
+					};
+					9EE63C362FA6317F009D82E0 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 9ECB31EC2FA0A8D300CECAA9;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				9ECB31EC2FA0A8D300CECAA9 /* OnVantage */,
+				9EE63C362FA6317F009D82E0 /* OnVantageTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9ECB31EB2FA0A8D300CECAA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9EE63C352FA6317F009D82E0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9EE63C332FA6317F009D82E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9EE63C3C2FA6317F009D82E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9ECB31EC2FA0A8D300CECAA9 /* OnVantage */;
+			targetProxy = 9EE63C3B2FA6317F009D82E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9ECB31F62FA0A8D400CECAA9 /* Debug */ = {
@@ -318,6 +393,48 @@
 			};
 			name = Release;
 		};
+		9EE63C3E2FA6317F009D82E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NPN8XNW4RQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stovensssa.OnVantageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnVantage.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnVantage";
+			};
+			name = Debug;
+		};
+		9EE63C3F2FA6317F009D82E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NPN8XNW4RQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stovensssa.OnVantageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnVantage.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnVantage";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -335,6 +452,15 @@
 			buildConfigurations = (
 				9ECB31F92FA0A8D400CECAA9 /* Debug */,
 				9ECB31FA2FA0A8D400CECAA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9EE63C3D2FA6317F009D82E0 /* Build configuration list for PBXNativeTarget "OnVantageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EE63C3E2FA6317F009D82E0 /* Debug */,
+				9EE63C3F2FA6317F009D82E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
