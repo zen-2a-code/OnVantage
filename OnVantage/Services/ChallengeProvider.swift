@@ -8,7 +8,7 @@
 import Foundation
 
 enum ChallengeProvider {
-    enum PickerResult {
+    enum PickerResult: Equatable {
         case doneForToday, empty
         case challenge(Challenge)
     }

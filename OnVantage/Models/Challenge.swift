@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Challenge {
+class Challenge: Equatable {
     var id = UUID()
     var title: String
     var conceptExplanation: String
@@ -30,5 +30,9 @@ class Challenge {
         self.createdAt = createdAt
         self.category = category
         self.attempts = attempts
+    }
+    
+    static func == (lhs: Challenge, rhs: Challenge) -> Bool {
+        lhs.id == rhs.id
     }
 }
