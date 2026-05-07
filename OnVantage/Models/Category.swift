@@ -12,7 +12,7 @@ import SwiftData
 class Category {
     var id = UUID()
     var name: String
-    var colorHex: String
+    var gradientName: String
     var iconName: String
     var isActive: Bool
     var isUserCreated: Bool
@@ -20,10 +20,10 @@ class Category {
     var challenges: [Challenge] = []
     var progress: CategoryProgress?
 
-    init(id: UUID = UUID(), name: String, colorHex: String, iconName: String, isActive: Bool, isUserCreated: Bool, createdAt: Date, challenges: [Challenge] = [], progress: CategoryProgress? = nil) {
+    init(id: UUID = UUID(), name: String, gradientName: String, iconName: String, isActive: Bool, isUserCreated: Bool, createdAt: Date, challenges: [Challenge] = [], progress: CategoryProgress? = nil) {
         self.id = id
         self.name = name
-        self.colorHex = colorHex
+        self.gradientName = gradientName
         self.iconName = iconName
         self.isActive = isActive
         self.isUserCreated = isUserCreated

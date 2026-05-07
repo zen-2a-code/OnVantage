@@ -1,7 +1,7 @@
 {
   "category": {
     "name": "SwiftUI Patterns",
-    "colorHex": "#007AFF",
+    "gradientName": "ocean",
     "iconName": "swift"
   },
   "challenges": [

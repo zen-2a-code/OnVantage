@@ -12,14 +12,27 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query var categories: [Category]
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-            Text("\(categories.first?.colorHex)")
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            
+            CategoriesView(modelContext: modelContext)
+                .tabItem {
+                    Label("Categories", systemImage: "square.grid.2x2")
+                }
+            
+            ProgressScreenView()
+                .tabItem {
+                    Label("Progress", systemImage: "chart.bar")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
         }
-        .padding()
         .onAppear {
             SeedImporter.loadSeedData(context: modelContext)
         }

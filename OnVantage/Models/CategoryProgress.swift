@@ -26,7 +26,31 @@ class CategoryProgress {
     var notificationHour: Int?
     var notificationMinute: Int?
 
-    init(id: UUID = UUID(), category: Category, lastCompletedDate: Date? = nil, cycleStartedAt: Date, shuffledOrder: [UUID] = [], isOrdered: Bool = false, notificationEnabled: Bool = false, notificationHour: Int? = nil, notificationMinute: Int? = nil) {
+    var totalChallenges: Int {
+        challengeQueueOrder.count
+    }
+
+    var totalChallengesCompleted: Int {
+        category.challenges.filter { challenge in
+            challenge.attempts.contains { challengeAttempt in
+                challengeAttempt.status == .completed
+                    && challengeAttempt.startedAt > cycleStartedAt
+            }
+        }
+        .count
+    }
+
+    init(
+        id: UUID = UUID(),
+        category: Category,
+        lastCompletedDate: Date? = nil,
+        cycleStartedAt: Date,
+        shuffledOrder: [UUID] = [],
+        isOrdered: Bool = false,
+        notificationEnabled: Bool = false,
+        notificationHour: Int? = nil,
+        notificationMinute: Int? = nil
+    ) {
         self.id = id
         self.category = category
         self.lastCompletedDate = lastCompletedDate

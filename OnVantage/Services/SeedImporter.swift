@@ -38,7 +38,7 @@ enum SeedImporter {
 
         let swiftCategory = Category(
             name: seedFileDTO.category.name,
-            colorHex: seedFileDTO.category.colorHex,
+            gradientName: seedFileDTO.category.gradientName,
             iconName: seedFileDTO.category.iconName,
             isActive: true,
             isUserCreated: false,
@@ -84,7 +84,7 @@ struct SeedFileDTO: Codable {
 
 struct SeedCategoryDTO: Codable {
     var name: String
-    var colorHex: String
+    var gradientName: String
     var iconName: String
 }
 
