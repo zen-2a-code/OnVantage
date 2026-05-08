@@ -15,7 +15,7 @@ struct OnVantageApp: App {
             ContentView()
         }
         .modelContainer(for: [
-            Category.self,
+            ChallengeCategory.self,
             CategoryProgress.self,
             Challenge.self,
             ChallengeAttempt.self,

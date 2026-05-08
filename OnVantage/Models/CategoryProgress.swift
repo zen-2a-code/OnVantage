@@ -11,7 +11,7 @@ import SwiftData
 @Model
 class CategoryProgress {
     var id = UUID()
-    var category: Category
+    var category: ChallengeCategory
     var currentStreak: Int = 0
     var longestStreak: Int = 0
     var lastCompletedDate: Date?
@@ -42,7 +42,7 @@ class CategoryProgress {
 
     init(
         id: UUID = UUID(),
-        category: Category,
+        category: ChallengeCategory,
         lastCompletedDate: Date? = nil,
         cycleStartedAt: Date,
         shuffledOrder: [UUID] = [],

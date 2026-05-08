@@ -19,7 +19,7 @@ final class ChallengeProviderTests: XCTestCase {
     override func setUp() {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         container = try! ModelContainer(
-            for: OnVantage.Category.self,
+            for: OnVantage.ChallengeCategory.self,
             CategoryProgress.self,
             Challenge.self,
             ChallengeAttempt.self,
@@ -33,7 +33,7 @@ final class ChallengeProviderTests: XCTestCase {
         context = nil
     }
 
-    func makeChallenge(for category: OnVantage.Category) -> Challenge {
+    func makeChallenge(for category: OnVantage.ChallengeCategory) -> Challenge {
         let challenge = Challenge(
             title: "Test Challenge",
             conceptExplanation: "Some concept",
@@ -49,9 +49,9 @@ final class ChallengeProviderTests: XCTestCase {
     }
 
     func makeProgress(isOrdered: Bool = false) -> CategoryProgress {
-        let category = Category(
+        let category = ChallengeCategory(
             name: "Test",
-            colorHex: "#000000",
+            gradientName: "ocean",
             iconName: "star",
             isActive: true,
             isUserCreated: false,

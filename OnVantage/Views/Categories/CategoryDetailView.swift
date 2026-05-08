@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct CategoryDetailView: View {
-    @Bindable var category: Category
+    @Bindable var category: ChallengeCategory
     var body: some View {
         List {
             TextField("Enter category name", text: $category.name)

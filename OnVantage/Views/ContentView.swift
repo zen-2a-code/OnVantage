@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query var categories: [Category]
+    @Query var categories: [ChallengeCategory]
     var body: some View {
         TabView {
             HomeView()
@@ -43,7 +43,7 @@ struct ContentView: View {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
 
     let container = try! ModelContainer(
-        for: Category.self,
+        for: ChallengeCategory.self,
         CategoryProgress.self,
         Challenge.self,
         ChallengeAttempt.self,

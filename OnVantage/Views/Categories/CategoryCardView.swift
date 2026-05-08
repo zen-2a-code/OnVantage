@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct CategoryCardView: View {
-    @Bindable var category: Category
+    @Bindable var category: ChallengeCategory
     let onRequestDelete: () -> Void
        let onSetActive: (Bool) -> Void
     

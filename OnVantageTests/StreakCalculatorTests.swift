@@ -19,7 +19,7 @@ final class StreakCalculatorTests: XCTestCase {
     override func setUp() {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         container = try! ModelContainer(
-            for: Category.self,
+            for: ChallengeCategory.self,
             CategoryProgress.self,
             Challenge.self,
             ChallengeAttempt.self,
@@ -131,9 +131,9 @@ final class StreakCalculatorTests: XCTestCase {
     }
     
     func makeProgress(isOrdered: Bool = false) -> CategoryProgress {
-        let category = Category(
+        let category = ChallengeCategory(
             name: "Test",
-            colorHex: "#000000",
+            gradientName: "aurora",
             iconName: "star",
             isActive: true,
             isUserCreated: false,

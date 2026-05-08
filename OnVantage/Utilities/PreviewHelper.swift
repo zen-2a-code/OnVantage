@@ -13,7 +13,7 @@ import SwiftData
         static var container: ModelContainer = {
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             return try! ModelContainer(
-                for: Category.self,
+                for: ChallengeCategory.self,
                 CategoryProgress.self,
                 Challenge.self,
                 ChallengeAttempt.self,
@@ -21,8 +21,8 @@ import SwiftData
             )
         }()
 
-        static func makeCategory(name: String = "Fitness") -> Category {
-            let category = Category(
+        static func makeCategory(name: String = "Fitness") -> ChallengeCategory {
+            let category = ChallengeCategory(
                 name: name,
                 gradientName: CategoryGradient.peach.rawValue,
                 iconName: "dumbbell",
@@ -34,7 +34,7 @@ import SwiftData
             return category
         }
 
-        static func makeChallenge(for category: OnVantage.Category) -> Challenge
+        static func makeChallenge(for category: OnVantage.ChallengeCategory) -> Challenge
         {
             let challenge = Challenge(
                 title: "Test Challenge",
@@ -51,7 +51,7 @@ import SwiftData
         }
 
         static func makeProgress(
-            for category: OnVantage.Category,
+            for category: OnVantage.ChallengeCategory,
             isOrdered: Bool = false
         ) -> CategoryProgress {
             let progress = CategoryProgress(

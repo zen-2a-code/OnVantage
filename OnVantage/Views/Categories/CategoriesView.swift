@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct CategoriesView: View {
-    @Query private var categories: [Category]
+    @Query private var categories: [ChallengeCategory]
     @State private var viewModel: ViewModel
 
     init(modelContext: ModelContext) {
@@ -40,6 +40,9 @@ struct CategoriesView: View {
                     .foregroundStyle(.primary)
                 }
             }
+            .sheet(isPresented: $viewModel.showNewCategorySheet) {
+                AddCategoryView(modelContext: viewModel.modelContext)
+            }
             .alert(
                 "Delete \(viewModel.categoryToDelete?.name ?? "")",
                 isPresented: $viewModel.showDeleteAlert
@@ -51,11 +54,18 @@ struct CategoriesView: View {
             } message: {
                 Text("Are you sure you want to delete this category?")
             }
-            .navigationDestination(for: Category.self) { category in
+            .navigationDestination(for: ChallengeCategory.self) { category in
                 CategoryDetailView(category: category)
             }
             .navigationTitle("Categories")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button {
+                    viewModel.showNewCategorySheet = true
+                } label: {
+                     Image(systemName: "plus")
+                }
+            }
         }
     }
 }

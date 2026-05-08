@@ -14,20 +14,18 @@ extension CategoriesView {
         var modelContext: ModelContext
         var showNewCategory: Bool = false
         var showDeleteAlert: Bool = false
-        var categoryToDelete: Category? = nil
+        var showNewCategorySheet: Bool = false
+        var categoryToDelete: ChallengeCategory? = nil
         
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
         }
         
-        func setActiveStatus(_ isActive: Bool, for category: Category) {
+        func setActiveStatus(_ isActive: Bool, for category: ChallengeCategory) {
             category.isActive = isActive
         }
-        func delete(_ category: Category) {
-            modelContext.delete(category)
-        }
         
-        func requestDelete(_ category: Category) {
+        func requestDelete(_ category: ChallengeCategory) {
             categoryToDelete = category
             showDeleteAlert = true
         }

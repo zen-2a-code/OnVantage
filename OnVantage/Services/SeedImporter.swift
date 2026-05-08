@@ -36,7 +36,7 @@ enum SeedImporter {
             fatalError("Could not decode seed JSON")
         }
 
-        let swiftCategory = Category(
+        let swiftCategory = ChallengeCategory(
             name: seedFileDTO.category.name,
             gradientName: seedFileDTO.category.gradientName,
             iconName: seedFileDTO.category.iconName,

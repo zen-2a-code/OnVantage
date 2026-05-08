@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-import SwiftUI
-
-enum CategoryGradient: String, CaseIterable {
+enum CategoryGradient: String, CaseIterable, Identifiable {
+    var id: String { rawValue }
+    
     case ocean, sunset, forest, aurora, candy,
          dusk, fire, mint, rose, midnight,
          peach, storm, lavender, gold, jade

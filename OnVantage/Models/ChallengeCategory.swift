@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Category {
+class ChallengeCategory {
     var id = UUID()
     var name: String
     var gradientName: String
