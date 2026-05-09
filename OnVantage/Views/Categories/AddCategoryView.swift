@@ -21,6 +21,7 @@ struct AddCategoryView: View {
         NavigationStack {
             Form {
                 TextField("Name", text: $viewModel.name)
+                Toggle("Random challenge order", isOn: $viewModel.isShuffleEnabled)
 
                 Section("Style") {
                     Picker("Category icon", selection: $viewModel.iconName) {

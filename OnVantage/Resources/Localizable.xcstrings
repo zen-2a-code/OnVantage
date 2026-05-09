@@ -77,6 +77,9 @@
         }
       }
     },
+    "Category created on: %@" : {
+
+    },
     "Category icon" : {
       "localizations" : {
         "bg" : {
@@ -86,6 +89,9 @@
           }
         }
       }
+    },
+    "Challenges" : {
+
     },
     "Challenges %lld/%lld" : {
       "comment" : "A subheading that shows the number of challenges completed and the total number of challenges for a category.",
@@ -117,6 +123,9 @@
         }
       }
     },
+    "Challenges order - %@" : {
+
+    },
     "Delete" : {
       "localizations" : {
         "bg" : {
@@ -140,6 +149,7 @@
       }
     },
     "Enter category name" : {
+      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
@@ -180,6 +190,9 @@
         }
       }
     },
+    "No challenges" : {
+
+    },
     "Progress" : {
       "localizations" : {
         "bg" : {
@@ -189,6 +202,9 @@
           }
         }
       }
+    },
+    "Random challenge order" : {
+
     },
     "Settings" : {
       "localizations" : {

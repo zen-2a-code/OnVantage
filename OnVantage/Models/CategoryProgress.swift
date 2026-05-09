@@ -39,6 +39,14 @@ class CategoryProgress {
         }
         .count
     }
+    
+    var orderModeLabel: String {
+        isOrdered ? "Ordered": "Random"
+    }
+    
+    var orderModeIcon: String {
+        isOrdered ? "list.number" : "dice"
+    }
 
     init(
         id: UUID = UUID(),

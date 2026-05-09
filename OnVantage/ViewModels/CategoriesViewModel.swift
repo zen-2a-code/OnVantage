@@ -12,7 +12,6 @@ extension CategoriesView {
     @Observable
     final class ViewModel {
         var modelContext: ModelContext
-        var showNewCategory: Bool = false
         var showDeleteAlert: Bool = false
         var showNewCategorySheet: Bool = false
         var categoryToDelete: ChallengeCategory? = nil
