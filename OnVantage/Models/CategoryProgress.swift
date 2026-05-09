@@ -47,6 +47,10 @@ class CategoryProgress {
     var orderModeIcon: String {
         isOrdered ? "list.number" : "dice"
     }
+    
+    var cyclesCompleted: Int {
+        self.cycleNumber - 1
+    }
 
     init(
         id: UUID = UUID(),

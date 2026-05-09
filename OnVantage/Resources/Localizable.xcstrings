@@ -90,7 +90,7 @@
         }
       }
     },
-    "Challenges" : {
+    "Challenge" : {
 
     },
     "Challenges %lld/%lld" : {
@@ -124,6 +124,12 @@
       }
     },
     "Challenges order - %@" : {
+
+    },
+    "Concept Explanation" : {
+
+    },
+    "Cycles completed: %lld" : {
 
     },
     "Delete" : {

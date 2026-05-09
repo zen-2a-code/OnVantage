@@ -8,62 +8,45 @@
 import SwiftData
 import SwiftUI
 
-struct CategoryDetailView: View {
+struct CategoryDetailsView: View {
     @Bindable var category: ChallengeCategory
+    @State var viewModel: ViewModel
+    
+    init(category: ChallengeCategory, modelContext: ModelContext) {
+        self.category = category
+        self._viewModel = State(initialValue: ViewModel(modelContext: modelContext))
+    }
     var body: some View {
-        List {
-            Section {
+        ScrollView {
+            VStack {
                 if let progress = category.progress {
                     HStack {
                         Image(systemName: progress.orderModeIcon)
                         Text("Challenges order - \(progress.orderModeLabel)")
                     }
-                }
 
+                    Text("Cycles completed: \(progress.cyclesCompleted)")
+                        .font(.caption2)
+                        .foregroundStyle(.secondary)
+                }
                 Text(
                     "Category created on: \(category.createdAt, format: .dateTime)"
                 )
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
             }
-            .listRowBackground(Color.white.opacity(0.7))
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.white.opacity(0.7))
+            }
+            .padding()
 
             if !category.challenges.isEmpty {
                 ForEach(category.challenges) { challenge in
-                    Section(challenge.title) {
-                        VStack {
-                            Text("Title")
-                                .font(.caption)
-                                .fontDesign(.serif)
-
-                            Text(challenge.title)
-                        }
-
-                        VStack {
-                            Text("Concept Explanation")
-                                .font(.caption)
-                                .fontDesign(.serif)
-                            Text(challenge.conceptExplanation)
-                        }
-
-                        VStack {
-                            Text("Challenge")
-                                .font(.headline)
-                                .fontDesign(.serif)
-                            Text(challenge.taskDescription)
-                        }
-
-                        Button(role: .destructive) {
-
-                        } label: {
-                            HStack {
-                                Image(systemName: "trash")
-                                Text("Delete")
-                            }
-                            .frame(maxWidth: .infinity)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.white.opacity(0.7))
-//                    .listRowSeparator(.hidden)
+                    ChallengeCardView(challenge: challenge)
                 }
 
             } else {
@@ -71,10 +54,9 @@ struct CategoryDetailView: View {
                     "No challenges",
                     systemImage: "flag.slash"
                 )
-                .listRowBackground(Color.white.opacity(0.7))
             }
         }
-        .scrollContentBackground(.hidden)
+        .frame(maxWidth: .infinity)
         .background(
             (CategoryGradient(rawValue: category.gradientName) ?? .fallback)
                 .gradient
@@ -95,7 +77,7 @@ struct CategoryDetailView: View {
 }
 
 #if DEBUG
-    struct PreviewHelperView<Content: View>: View {
+    private struct PreviewHelperView<Content: View>: View {
         @Query var categories: [ChallengeCategory]
         let content: (ChallengeCategory) -> Content
 
@@ -113,7 +95,7 @@ struct CategoryDetailView: View {
 
         return NavigationStack {
             PreviewHelperView { category in
-                CategoryDetailView(category: category)
+                CategoryDetailsView(category: category, modelContext: container.mainContext)
             }
             .modelContainer(container)
         }
@@ -129,7 +111,7 @@ struct CategoryDetailView: View {
     let challenge = PreviewHelper.makeChallenge(for: category)
     let challenge2 = PreviewHelper.makeChallenge(for: category)
     NavigationStack {
-        CategoryDetailView(category: category)
+        CategoryDetailsView(category: category, modelContext: container.mainContext)
             .modelContainer(container)
     }
 }
