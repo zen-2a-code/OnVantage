@@ -33,20 +33,24 @@ struct CategoryDetailView: View {
                             Text("Title")
                                 .font(.caption)
                                 .fontDesign(.serif)
+
                             Text(challenge.title)
                         }
-                        VStack {
-                            Text("Description")
-                                .font(.caption)
-                                .fontDesign(.serif)
-                            Text(challenge.taskDescription)
-                        }
+
                         VStack {
                             Text("Concept Explanation")
                                 .font(.caption)
                                 .fontDesign(.serif)
                             Text(challenge.conceptExplanation)
                         }
+
+                        VStack {
+                            Text("Challenge")
+                                .font(.headline)
+                                .fontDesign(.serif)
+                            Text(challenge.taskDescription)
+                        }
+
                         Button(role: .destructive) {
 
                         } label: {
@@ -59,6 +63,7 @@ struct CategoryDetailView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .listRowBackground(Color.white.opacity(0.7))
+//                    .listRowSeparator(.hidden)
                 }
 
             } else {
