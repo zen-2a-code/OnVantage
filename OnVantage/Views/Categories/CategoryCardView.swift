@@ -5,14 +5,14 @@
 //  Created by Stoyan Hristov on 7.05.26.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct CategoryCardView: View {
     @Bindable var category: ChallengeCategory
     let onRequestDelete: () -> Void
-       let onSetActive: (Bool) -> Void
-    
+    let onSetActive: (Bool) -> Void
+
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(
@@ -33,10 +33,10 @@ struct CategoryCardView: View {
                         Button("Delete", role: .destructive) {
                             onRequestDelete()
                         }
-                            .font(.caption2)
-                            .buttonStyle(.borderedProminent)
-                            .bold()
-                            .foregroundStyle(.white)
+                        .font(.caption2)
+                        .buttonStyle(.borderedProminent)
+                        .bold()
+                        .foregroundStyle(.white)
 
                         Spacer()
 
@@ -66,10 +66,14 @@ struct CategoryCardView: View {
                             Image(systemName: category.iconName)
                                 .font(.title2)
                             if let progress = category.progress {
-                                Text("Challenges \(progress.totalChallengesCompleted)/\(progress.totalChallenges)")
-                                    .foregroundStyle(.secondary)
+                                Text(
+                                    "Challenges \(progress.totalChallengesCompleted)/\(progress.totalChallenges)"
+                                )
+                                .foregroundStyle(.secondary)
                             } else {
-                                Text("Challenges 0/\(category.challenges.count)")
+                                Text(
+                                    "Challenges 0/\(category.challenges.count)"
+                                )
                             }
                         }
                     }
@@ -83,10 +87,18 @@ struct CategoryCardView: View {
     let category = PreviewHelper.makeCategory(name: "Fitness")
     let progress = PreviewHelper.makeProgress(for: category)
     let _ = PreviewHelper.makeChallenge(for: category)
-    let _ = {CycleManager.buildQueue(for: progress)}()
-    let _ = {category.challenges.first!.attempts.append(ChallengeAttempt(startedAt: .now, status: .completed))}()
-    
-    CategoryCardView(category: category, onRequestDelete: {
-    }, onSetActive: {isActive in } )
+    let _ = { CycleManager.buildQueue(for: progress) }()
+    let _ = {
+        category.challenges.first!.attempts.append(
+            ChallengeAttempt(startedAt: .now, status: .completed)
+        )
+    }()
+
+    CategoryCardView(
+        category: category,
+        onRequestDelete: {
+        },
+        onSetActive: { isActive in }
+    )
     .modelContainer(PreviewHelper.container)
 }

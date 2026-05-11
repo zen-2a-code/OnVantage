@@ -14,7 +14,7 @@ extension CategoryDetailsView {
         var modelContext: ModelContext
         var challengeToModify: Challenge?
         var showDeleteAlert: Bool = false
-        var showEditSheet: Bool = false
+        var showAddModifyChallengeSheet: Bool = false
         
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
@@ -25,15 +25,28 @@ extension CategoryDetailsView {
             challengeToModify = challenge
         }
         
+        func requestAdd() {
+            challengeToModify = nil
+            showAddModifyChallengeSheet = true
+        }
+        
         func confirmDelete() {
             guard let challengeToModify = challengeToModify else { return }
+            
+            if let progress = challengeToModify.category.progress {
+                CycleManager.handleChallengeRemoved(challengeToModify, forCategoryProgress: progress)
+            }
+
             modelContext.delete(challengeToModify)
+            try? self.modelContext.save()
+            
             self.challengeToModify = nil
+            self.showDeleteAlert = false
         }
         
         func requestEdit(_ challenge: Challenge) {
             challengeToModify = challenge
-            showEditSheet = true
+            showAddModifyChallengeSheet = true
         }
     }
 }

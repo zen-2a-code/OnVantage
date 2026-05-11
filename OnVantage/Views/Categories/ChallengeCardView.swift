@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ChallengeCardView: View {
     @Bindable var challenge: Challenge
+    let onEdit: () -> Void
+    let onDelete: () -> Void
     var body: some View {
         VStack(alignment: .center, spacing: 15) {
             VStack {
@@ -22,8 +24,6 @@ struct ChallengeCardView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-            
-
             Divider()
 
             VStack(spacing: 6) {
@@ -45,13 +45,13 @@ struct ChallengeCardView: View {
             Divider()
             HStack(spacing: 25) {
                 Button {
-
+                    onEdit()
                 } label: {
                     Label("Edit", systemImage: "pencil")
                 }
 
                 Button(role: .destructive) {
-
+                    onDelete()
                 } label: {
                     HStack {
                         Image(systemName: "trash")
@@ -89,7 +89,7 @@ struct ChallengeCardView: View {
 
         return NavigationStack {
             PreviewHelperView { challenge in
-                ChallengeCardView(challenge: challenge)
+                ChallengeCardView(challenge: challenge, onEdit: {}, onDelete: {})
                     .background(CategoryGradient.fire.gradient)
             }
             .modelContainer(container)
@@ -101,6 +101,6 @@ struct ChallengeCardView: View {
     var container = PreviewHelper.container
     var category = PreviewHelper.makeCategory()
     var challenge = PreviewHelper.makeChallenge(for: category)
-    ChallengeCardView(challenge: challenge)
+    ChallengeCardView(challenge: challenge, onEdit: {}, onDelete: {})
         .modelContainer(container)
 }

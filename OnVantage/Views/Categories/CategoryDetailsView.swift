@@ -11,10 +11,12 @@ import SwiftUI
 struct CategoryDetailsView: View {
     @Bindable var category: ChallengeCategory
     @State var viewModel: ViewModel
-    
+
     init(category: ChallengeCategory, modelContext: ModelContext) {
         self.category = category
-        self._viewModel = State(initialValue: ViewModel(modelContext: modelContext))
+        self._viewModel = State(
+            initialValue: ViewModel(modelContext: modelContext)
+        )
     }
     var body: some View {
         ScrollView {
@@ -46,7 +48,11 @@ struct CategoryDetailsView: View {
 
             if !category.challenges.isEmpty {
                 ForEach(category.challenges) { challenge in
-                    ChallengeCardView(challenge: challenge)
+                    ChallengeCardView(
+                        challenge: challenge,
+                        onEdit: { viewModel.requestEdit(challenge) },
+                        onDelete: { viewModel.requestDelete(challenge) }
+                    )
                 }
 
             } else {
@@ -64,14 +70,27 @@ struct CategoryDetailsView: View {
         .navigationTitle($category.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-
             ToolbarItem {
                 Button {
-
+                    viewModel.requestAdd()
                 } label: {
                     Image(systemName: "plus")
                 }
             }
+        }
+        .sheet(isPresented: $viewModel.showAddModifyChallengeSheet) {
+            AddModifyChallengeView(
+                modelContext: viewModel.modelContext,
+                category: category,
+                challenge: viewModel.challengeToModify
+            )
+        }
+        .alert(
+            "Delete \(viewModel.challengeToModify?.title ?? "")?",
+            isPresented: $viewModel.showDeleteAlert
+        ) {
+            Button("Delete", role: .destructive) { viewModel.confirmDelete() }
+            Button("Cancel", role: .cancel) {}
         }
     }
 }
@@ -95,7 +114,10 @@ struct CategoryDetailsView: View {
 
         return NavigationStack {
             PreviewHelperView { category in
-                CategoryDetailsView(category: category, modelContext: container.mainContext)
+                CategoryDetailsView(
+                    category: category,
+                    modelContext: container.mainContext
+                )
             }
             .modelContainer(container)
         }
@@ -111,7 +133,10 @@ struct CategoryDetailsView: View {
     let challenge = PreviewHelper.makeChallenge(for: category)
     let challenge2 = PreviewHelper.makeChallenge(for: category)
     NavigationStack {
-        CategoryDetailsView(category: category, modelContext: container.mainContext)
-            .modelContainer(container)
+        CategoryDetailsView(
+            category: category,
+            modelContext: container.mainContext
+        )
+        .modelContainer(container)
     }
 }

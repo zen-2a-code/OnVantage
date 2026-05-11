@@ -24,7 +24,7 @@ extension AddModifyChallengeView {
         var navTitle: String { isEditMode ? "Edit Challenge" : "Add Challenge" }
 
         var isSaveDisabled: Bool {
-            title.trimmingCharacters(in: .whitespaces).count < 3 && taskDescription.count < 3 
+            title.trimmingCharacters(in: .whitespaces).count < 3 ||  taskDescription.count < 3 
         }
 
         init(
@@ -59,6 +59,12 @@ extension AddModifyChallengeView {
                 )
                 category.challenges.append(newChallenge)
                 modelContext.insert(newChallenge)
+                
+                if let progress = category.progress {
+                    CycleManager.handleChallengeAdded(newChallenge, toCategoryProgress: progress)
+                }
+                
+                try? modelContext.save()
             }
         }
     }
