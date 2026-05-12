@@ -183,7 +183,7 @@
     "Enter title" : {
 
     },
-    "Hello From HomeView" : {
+    "Good job!" : {
 
     },
     "Hello from ProgressView" : {
@@ -230,6 +230,9 @@
     "Random challenge order" : {
 
     },
+    "Ready?" : {
+
+    },
     "Settings" : {
       "localizations" : {
         "bg" : {
@@ -249,6 +252,9 @@
           }
         }
       }
+    },
+    "Time remaining:" : {
+
     },
     "Title:" : {
 

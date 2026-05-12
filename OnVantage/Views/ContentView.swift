@@ -13,7 +13,7 @@ struct ContentView: View {
     @Query var categories: [ChallengeCategory]
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(categories: categories)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }

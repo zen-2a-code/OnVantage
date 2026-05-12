@@ -35,7 +35,8 @@ struct CategoriesView: View {
                                 )
                             }
                         )
-                        .padding()
+                        .padding(.horizontal)
+                        .padding(.vertical, 3)
                     }
                     .foregroundStyle(.primary)
                 }
@@ -55,7 +56,10 @@ struct CategoriesView: View {
                 Text("Are you sure you want to delete this category?")
             }
             .navigationDestination(for: ChallengeCategory.self) { category in
-                CategoryDetailsView(category: category, modelContext: viewModel.modelContext)
+                CategoryDetailsView(
+                    category: category,
+                    modelContext: viewModel.modelContext
+                )
             }
             .navigationTitle("Categories")
             .navigationBarTitleDisplayMode(.inline)
@@ -63,7 +67,7 @@ struct CategoriesView: View {
                 Button {
                     viewModel.showNewCategorySheet = true
                 } label: {
-                     Image(systemName: "plus")
+                    Image(systemName: "plus")
                 }
             }
         }
