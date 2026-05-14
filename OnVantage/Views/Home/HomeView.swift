@@ -71,23 +71,33 @@ struct HomeView: View {
 
                         VStack(spacing: 13) {
                             if isThereChallengeForToday(for: category) {
-                                Text("Time remaining:")
-                                    .foregroundStyle(.secondary)
-                                Text(getTimeLeftOrCompleteText(for: category))
-                                Image(systemName: "hourglass.bottomhalf.filled")
-                                    .foregroundStyle(.secondary)
-                                    .font(.largeTitle)
-                                    .rotationEffect(
-                                        .degrees(hourGlassRotationAngle)
-                                    )
+                                NavigationLink(
+                                    value: category.challenges.first!
+                                ) {
+                                    VStack(spacing: 13) {
+                                        Text("Time remaining:")
+                                            .foregroundStyle(.secondary)
+                                        Text(
+                                            getTimeLeftOrCompleteText(
+                                                for: category
+                                            )
+                                        )
+                                        Image(
+                                            systemName:
+                                                "hourglass.bottomhalf.filled"
+                                        )
+                                        .foregroundStyle(.secondary)
+                                        .font(.largeTitle)
+                                        .rotationEffect(
+                                            .degrees(hourGlassRotationAngle)
+                                        )
 
-                                Button {
+                                        Text("Ready?")
+                                            .padding()
+                                            .background(.white.opacity(0.4))
+                                            .clipShape(.rect(cornerRadius: 20))
 
-                                } label: {
-                                    Text("Ready?")
-                                        .padding()
-                                        .background(.white.opacity(0.4))
-                                        .clipShape(.rect(cornerRadius: 20))
+                                    }
                                 }
                             } else {
                                 VStack(spacing: 13) {
@@ -122,6 +132,12 @@ struct HomeView: View {
             }
             .navigationTitle("Daily Challenges")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(
+                for: Challenge.self,
+                destination: { challenge in
+                    ChallengeDetailsView(challenge: challenge)
+                }
+            )
             .onAppear {
                 timeUntilTomorrow = calculateTimeUntilTomorrow()
             }
