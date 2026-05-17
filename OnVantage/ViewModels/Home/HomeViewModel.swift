@@ -5,14 +5,99 @@
 //  Created by Stoyan Hristov on 17.05.26.
 //
 
+internal import Combine
+import SwiftData
 import SwiftUI
 
-struct HomeViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+extension HomeView {
+    @Observable
+    class ViewModel {
+        let hourglassRotationTimer = Timer.publish(
+            every: 3,
+            on: .main,
+            in: .common
+        )
+        .autoconnect()
+        let countDownTimer = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
 
-#Preview {
-    HomeViewModel()
+        var timeUntilTomorrow: String = "23 hours, 59 minutes, 59 seconds"
+        var hourGlassRotationAngle: Double = 0.0
+        var navigationPath = NavigationPath()
+        var modelContext: ModelContext
+
+        init(modelContext: ModelContext) {
+            self.modelContext = modelContext
+        }
+
+        func tickCountdown() {
+            let calendar = Calendar.current
+            let startOfToday = calendar.startOfDay(for: .now)
+            let startOfTomorrow = calendar.date(
+                byAdding: .day,
+                value: 1,
+                to: startOfToday
+            )!
+
+            let formatter = DateComponentsFormatter()
+            formatter.allowedUnits = [.hour, .minute, .second]
+            formatter.unitsStyle = .full
+
+            timeUntilTomorrow =
+                formatter.string(from: .now, to: startOfTomorrow)
+                ?? "Unknown time"
+        }
+
+        func tickHourglass() {
+            hourGlassRotationAngle = hourGlassRotationAngle == 0 ? 180 : 0
+        }
+
+        func nextChallenge(for category: ChallengeCategory) -> Challenge? {
+            if let progres = category.progress {
+                let pickerResult = ChallengeProvider.nextChallenge(for: progres)
+
+                if case .challenge(let challenge) = pickerResult {
+                    return challenge
+                }
+            }
+            return nil
+        }
+
+        func statusText(for category: ChallengeCategory) -> String {
+            if let progress = category.progress {
+                if ChallengeProvider.nextChallenge(for: progress)
+                    == .doneForToday
+                {
+                    return "This category challenges are done for today!"
+                } else if ChallengeProvider.nextChallenge(for: progress)
+                    == .empty
+                {
+                    return "No challenges for this category"
+                } else {
+                    return timeUntilTomorrow
+                }
+            }
+            return ""
+        }
+
+        func hasChallengeToday(for category: ChallengeCategory) -> Bool {
+            guard let progress = category.progress else { return false }
+            if case .challenge = ChallengeProvider.nextChallenge(for: progress)
+            {
+                return true
+            }
+            return false
+        }
+
+        func skip(for category: ChallengeCategory) {
+            guard let progress = category.progress else { return }
+            guard progress.skipsRemainingThisCycle > 0 else { return }
+            StreakCalculator.recordSkip(for: progress)
+            try? modelContext.save()
+        }
+
+        func clearNavigation() {
+            navigationPath = NavigationPath()
+        }
+    }
 }

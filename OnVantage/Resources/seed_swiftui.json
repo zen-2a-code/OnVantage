@@ -1,129 +1,169 @@
-{
-  "category": {
-    "name": "SwiftUI Patterns",
-    "gradientName": "ocean",
-    "iconName": "swift"
-  },
-  "challenges": [
     {
-      "title": "@State basics",
-      "conceptExplanation": "@State is a property wrapper that lets a view own and manage a piece of data. When the value changes, SwiftUI automatically re-renders the view. Think of it as a variable that the view watches — any change triggers a UI update. It should only be used for simple, local state that belongs to one view.",
-      "taskDescription": "Create a view with a Text label showing a number and two buttons: one to increment and one to decrement the number. Use @State to store the number.",
-      "difficulty": 1
-    },
-    {
-      "title": "@Binding — sharing state",
-      "conceptExplanation": "@Binding lets a child view read and write state that is owned by a parent view. The child doesn't own the data — it just has a two-way connection to it. This is how SwiftUI passes mutable state down the view hierarchy without duplicating it.",
-      "taskDescription": "Create a parent view with a @State Bool called isOn. Pass it as a @Binding to a child view that contains a Toggle. Confirm that toggling in the child updates the parent's state.",
-      "difficulty": 1
-    },
-    {
-      "title": "VStack, HStack, ZStack",
-      "conceptExplanation": "These three layout containers are the building blocks of SwiftUI. VStack arranges views vertically, HStack horizontally, and ZStack layers views on top of each other. They can be nested freely and each accepts alignment and spacing parameters.",
-      "taskDescription": "Build a profile card using all three stacks. Use ZStack for a background colour behind the card, HStack for an avatar and name side by side, and VStack to stack the name and subtitle.",
-      "difficulty": 1
-    },
-    {
-      "title": "List and ForEach",
-      "conceptExplanation": "List renders a scrollable collection of rows. ForEach iterates over a collection and produces views for each element. ForEach requires each element to be identifiable — either by conforming to Identifiable or by providing a key path to a unique property.",
-      "taskDescription": "Create an array of five strings representing fruit names. Display them in a List using ForEach. Tap a row to print the fruit name to the console.",
-      "difficulty": 1
-    },
-    {
-      "title": "NavigationStack and NavigationLink",
-      "conceptExplanation": "NavigationStack manages a stack of views the user can push onto and pop off. NavigationLink is a button that pushes a destination view onto the stack. The destination is described using the value-based API: NavigationLink(value:) paired with navigationDestination(for:).",
-      "taskDescription": "Create a list of five items. Tapping any item pushes a detail view that displays the item's name. Add a back button that returns to the list.",
-      "difficulty": 1
-    },
-    {
-      "title": "SF Symbols in SwiftUI",
-      "conceptExplanation": "SF Symbols is Apple's library of over 5000 icons, all available via Image(systemName:). Symbols scale with Dynamic Type, respond to font modifiers, and support multicolour rendering. You can browse all symbols in the SF Symbols app.",
-      "taskDescription": "Create a row of five SF Symbol icons using HStack. Apply different foreground colours to each. Try using the .font(.largeTitle) modifier to scale them up.",
-      "difficulty": 1
-    },
-    {
-      "title": "@Observable and ViewModels",
-      "conceptExplanation": "@Observable (introduced in iOS 17) replaces ObservableObject. Mark a class with @Observable and SwiftUI automatically tracks which properties each view reads — only those views re-render when those properties change. No need for @Published. Use it for ViewModels that hold screen state.",
-      "taskDescription": "Create an @Observable class called CounterViewModel with a property count: Int. In a view, instantiate it with @State var vm = CounterViewModel() and bind a button to vm.count += 1. Confirm the view updates.",
-      "difficulty": 2
-    },
-    {
-      "title": "Sheets and fullScreenCover",
-      "conceptExplanation": ".sheet presents a modal view that slides up from the bottom and can be dismissed by swiping down. .fullScreenCover covers the entire screen. Both are controlled by a @State Bool binding. Use sheets for secondary flows, full screen cover for immersive content.",
-      "taskDescription": "Create a view with a button that presents a sheet containing a simple form with a text field and a dismiss button. The dismiss button should close the sheet programmatically using @Environment(\\.dismiss).",
-      "difficulty": 2
-    },
-    {
-      "title": "Custom ViewModifiers",
-      "conceptExplanation": "A ViewModifier is a reusable block of modifiers you can apply to any view. Instead of repeating .padding().background().cornerRadius() everywhere, you define it once as a ViewModifier and apply it with .modifier() or a custom View extension. This keeps views clean and consistent.",
-      "taskDescription": "Create a CardModifier that applies a white background, rounded corners, and a subtle shadow. Apply it to three different views using a View extension called .cardStyle().",
-      "difficulty": 2
-    },
-    {
-      "title": "AsyncImage",
-      "conceptExplanation": "AsyncImage loads an image from a URL asynchronously and handles the loading, success, and failure states for you. You provide a URL and a closure that receives a phase — .empty (loading), .success(image), or .failure(error). It integrates with SwiftUI's layout system automatically.",
-      "taskDescription": "Display a remote image from any public URL using AsyncImage. Show a ProgressView while loading and a placeholder icon if the load fails.",
-      "difficulty": 2
-    },
-    {
-      "title": "TabView",
-      "conceptExplanation": "TabView displays multiple screens accessible via a tab bar at the bottom. Each tab is a view tagged with .tabItem which defines its icon and label. TabView manages which tab is visible using a @State selection binding or automatically.",
-      "taskDescription": "Create a TabView with three tabs: Home, Search, and Settings. Each tab should show a different coloured background and a label identifying it. Use SF Symbols for the tab icons.",
-      "difficulty": 1
-    },
-    {
-      "title": "SwiftData — first @Model",
-      "conceptExplanation": "SwiftData is Apple's modern persistence framework. Mark a class with @Model and SwiftData handles storage, relationships, and queries automatically. The modelContainer modifier sets up the database for the whole app. @Query in a view fetches and observes data automatically.",
-      "taskDescription": "Create a simple @Model class called Note with a title: String and createdAt: Date. Wire up a modelContainer in your App file. Use @Query in a view to display all notes in a List.",
-      "difficulty": 2
-    },
-    {
-      "title": "Animations with withAnimation",
-      "conceptExplanation": "SwiftUI animations are driven by state changes. Wrap a state change in withAnimation { } and SwiftUI smoothly interpolates between the old and new layout. You can control the animation curve (.easeIn, .spring, .bouncy) and duration. Views can also use the .animation(_:value:) modifier.",
-      "taskDescription": "Create a circle that moves between the top and bottom of the screen when a button is tapped. Use withAnimation(.spring) to animate the position change.",
-      "difficulty": 2
-    },
-    {
-      "title": "GeometryReader",
-      "conceptExplanation": "GeometryReader gives you access to the size and position of a view's container. Use it when you need to size or position views relative to available space rather than fixed values. It fills all available space by default, so use it sparingly and only when relative sizing is genuinely needed.",
-      "taskDescription": "Use GeometryReader to draw a rectangle that is always exactly 80% of the screen width and 30% of the screen height, regardless of device size.",
-      "difficulty": 2
-    },
-    {
-      "title": "Environment values",
-      "conceptExplanation": "@Environment lets views read values from the environment — things like colour scheme, locale, dismiss action, and custom values you define. The environment flows down the view hierarchy automatically. Child views can read it without the parent explicitly passing it.",
-      "taskDescription": "Read the current colorScheme from the environment. Display different background colours depending on whether the app is in light or dark mode. Test by switching appearance in the simulator.",
-      "difficulty": 2
-    },
-    {
-      "title": "Searchable",
-      "conceptExplanation": ".searchable adds a search bar to a NavigationStack. The search text is bound to a @State String, and you filter your data based on that string. SwiftUI handles the keyboard, placement, and cancel button automatically.",
-      "taskDescription": "Create a searchable list of 10 country names. Filter the list in real time as the user types. Show an empty state message when no results match.",
-      "difficulty": 2
-    },
-    {
-      "title": "LazyVGrid",
-      "conceptExplanation": "LazyVGrid arranges views in a vertical grid with columns you define. The lazy part means it only creates views as they scroll into view — important for performance with large datasets. You define columns using GridItem, controlling whether they are fixed, flexible, or adaptive.",
-      "taskDescription": "Display a grid of 20 coloured squares using LazyVGrid with three adaptive columns. Each square should show a number in the centre.",
-      "difficulty": 2
-    },
-    {
-      "title": "Task and async/await in SwiftUI",
-      "conceptExplanation": "The .task modifier runs an async function when a view appears and cancels it when the view disappears. This is the preferred way to load data in SwiftUI. async/await makes asynchronous code read like synchronous code — you write await before any call that takes time, and Swift handles the rest.",
-      "taskDescription": "Create a view that fetches a random joke from https://official-joke-api.appspot.com/random_joke using URLSession. Display the setup and punchline when loaded, or a ProgressView while loading.",
-      "difficulty": 3
-    },
-    {
-      "title": "Custom transitions",
-      "conceptExplanation": "SwiftUI views can enter and exit the screen with custom transitions using the .transition() modifier. Built-in options include .slide, .opacity, .scale, and .move(edge:). You can combine them with .combined(with:) or create fully custom transitions using AnyTransition.",
-      "taskDescription": "Build a notification banner that slides in from the top when a button is tapped and fades out after 2 seconds. Use .transition(.move(edge: .top).combined(with: .opacity)) and withAnimation.",
-      "difficulty": 3
-    },
-    {
-      "title": "PreferenceKey — child to parent communication",
-      "conceptExplanation": "PreferenceKey lets child views send values up to parent views — the opposite direction of Environment. A child sets a value using .preference(key:value:) and a parent reads it using .onPreferenceChange. This is useful for things like measuring child view sizes or propagating state upward without tight coupling.",
-      "taskDescription": "Create a child view that reports its own height to a parent using a custom PreferenceKey. The parent displays the reported height as a Text label below the child.",
-      "difficulty": 3
+        "category": {
+            "name": "SwiftUI Patterns",
+            "gradientName": "fire",
+            "iconName": "swift"
+        },
+        "challenges":
+            [
+                {
+                    "title": "@State basics",
+                    "conceptExplanation":
+                        "@State is a property wrapper that lets a view own and manage a piece of data. When the value changes, SwiftUI automatically re-renders the view. Think of it as a variable that the view watches — any change triggers a UI update. It should only be used for simple, local state that belongs to one view.",
+                    "taskDescription":
+                        "Create a view with a Text label showing a number and two buttons: one to increment and one to decrement the number. Use @State to store the number.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "@Binding — sharing state",
+                    "conceptExplanation":
+                        "@Binding lets a child view read and write state that is owned by a parent view. The child doesn't own the data — it just has a two-way connection to it. This is how SwiftUI passes mutable state down the view hierarchy without duplicating it.",
+                    "taskDescription":
+                        "Create a parent view with a @State Bool called isOn. Pass it as a @Binding to a child view that contains a Toggle. Confirm that toggling in the child updates the parent's state.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "VStack, HStack, ZStack",
+                    "conceptExplanation":
+                        "These three layout containers are the building blocks of SwiftUI. VStack arranges views vertically, HStack horizontally, and ZStack layers views on top of each other. They can be nested freely and each accepts alignment and spacing parameters.",
+                    "taskDescription":
+                        "Build a profile card using all three stacks. Use ZStack for a background colour behind the card, HStack for an avatar and name side by side, and VStack to stack the name and subtitle.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "List and ForEach",
+                    "conceptExplanation":
+                        "List renders a scrollable collection of rows. ForEach iterates over a collection and produces views for each element. ForEach requires each element to be identifiable — either by conforming to Identifiable or by providing a key path to a unique property.",
+                    "taskDescription":
+                        "Create an array of five strings representing fruit names. Display them in a List using ForEach. Tap a row to print the fruit name to the console.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "NavigationStack and NavigationLink",
+                    "conceptExplanation":
+                        "NavigationStack manages a stack of views the user can push onto and pop off. NavigationLink is a button that pushes a destination view onto the stack. The destination is described using the value-based API: NavigationLink(value:) paired with navigationDestination(for:).",
+                    "taskDescription":
+                        "Create a list of five items. Tapping any item pushes a detail view that displays the item's name. Add a back button that returns to the list.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "SF Symbols in SwiftUI",
+                    "conceptExplanation":
+                        "SF Symbols is Apple's library of over 5000 icons, all available via Image(systemName:). Symbols scale with Dynamic Type, respond to font modifiers, and support multicolour rendering. You can browse all symbols in the SF Symbols app.",
+                    "taskDescription":
+                        "Create a row of five SF Symbol icons using HStack. Apply different foreground colours to each. Try using the .font(.largeTitle) modifier to scale them up.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "@Observable and ViewModels",
+                    "conceptExplanation":
+                        "@Observable (introduced in iOS 17) replaces ObservableObject. Mark a class with @Observable and SwiftUI automatically tracks which properties each view reads — only those views re-render when those properties change. No need for @Published. Use it for ViewModels that hold screen state.",
+                    "taskDescription":
+                        "Create an @Observable class called CounterViewModel with a property count: Int. In a view, instantiate it with @State var vm = CounterViewModel() and bind a button to vm.count += 1. Confirm the view updates.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "Sheets and fullScreenCover",
+                    "conceptExplanation":
+                        ".sheet presents a modal view that slides up from the bottom and can be dismissed by swiping down. .fullScreenCover covers the entire screen. Both are controlled by a @State Bool binding. Use sheets for secondary flows, full screen cover for immersive content.",
+                    "taskDescription":
+                        "Create a view with a button that presents a sheet containing a simple form with a text field and a dismiss button. The dismiss button should close the sheet programmatically using @Environment(\\.dismiss).",
+                    "difficulty": 2
+                },
+                {
+                    "title": "Custom ViewModifiers",
+                    "conceptExplanation":
+                        "A ViewModifier is a reusable block of modifiers you can apply to any view. Instead of repeating .padding().background().cornerRadius() everywhere, you define it once as a ViewModifier and apply it with .modifier() or a custom View extension. This keeps views clean and consistent.",
+                    "taskDescription":
+                        "Create a CardModifier that applies a white background, rounded corners, and a subtle shadow. Apply it to three different views using a View extension called .cardStyle().",
+                    "difficulty": 2
+                },
+                {
+                    "title": "AsyncImage",
+                    "conceptExplanation":
+                        "AsyncImage loads an image from a URL asynchronously and handles the loading, success, and failure states for you. You provide a URL and a closure that receives a phase — .empty (loading), .success(image), or .failure(error). It integrates with SwiftUI's layout system automatically.",
+                    "taskDescription":
+                        "Display a remote image from any public URL using AsyncImage. Show a ProgressView while loading and a placeholder icon if the load fails.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "TabView",
+                    "conceptExplanation":
+                        "TabView displays multiple screens accessible via a tab bar at the bottom. Each tab is a view tagged with .tabItem which defines its icon and label. TabView manages which tab is visible using a @State selection binding or automatically.",
+                    "taskDescription":
+                        "Create a TabView with three tabs: Home, Search, and Settings. Each tab should show a different coloured background and a label identifying it. Use SF Symbols for the tab icons.",
+                    "difficulty": 1
+                },
+                {
+                    "title": "SwiftData — first @Model",
+                    "conceptExplanation":
+                        "SwiftData is Apple's modern persistence framework. Mark a class with @Model and SwiftData handles storage, relationships, and queries automatically. The modelContainer modifier sets up the database for the whole app. @Query in a view fetches and observes data automatically.",
+                    "taskDescription":
+                        "Create a simple @Model class called Note with a title: String and createdAt: Date. Wire up a modelContainer in your App file. Use @Query in a view to display all notes in a List.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "Animations with withAnimation",
+                    "conceptExplanation":
+                        "SwiftUI animations are driven by state changes. Wrap a state change in withAnimation { } and SwiftUI smoothly interpolates between the old and new layout. You can control the animation curve (.easeIn, .spring, .bouncy) and duration. Views can also use the .animation(_:value:) modifier.",
+                    "taskDescription":
+                        "Create a circle that moves between the top and bottom of the screen when a button is tapped. Use withAnimation(.spring) to animate the position change.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "GeometryReader",
+                    "conceptExplanation":
+                        "GeometryReader gives you access to the size and position of a view's container. Use it when you need to size or position views relative to available space rather than fixed values. It fills all available space by default, so use it sparingly and only when relative sizing is genuinely needed.",
+                    "taskDescription":
+                        "Use GeometryReader to draw a rectangle that is always exactly 80% of the screen width and 30% of the screen height, regardless of device size.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "Environment values",
+                    "conceptExplanation":
+                        "@Environment lets views read values from the environment — things like colour scheme, locale, dismiss action, and custom values you define. The environment flows down the view hierarchy automatically. Child views can read it without the parent explicitly passing it.",
+                    "taskDescription":
+                        "Read the current colorScheme from the environment. Display different background colours depending on whether the app is in light or dark mode. Test by switching appearance in the simulator.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "Searchable",
+                    "conceptExplanation":
+                        ".searchable adds a search bar to a NavigationStack. The search text is bound to a @State String, and you filter your data based on that string. SwiftUI handles the keyboard, placement, and cancel button automatically.",
+                    "taskDescription":
+                        "Create a searchable list of 10 country names. Filter the list in real time as the user types. Show an empty state message when no results match.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "LazyVGrid",
+                    "conceptExplanation":
+                        "LazyVGrid arranges views in a vertical grid with columns you define. The lazy part means it only creates views as they scroll into view — important for performance with large datasets. You define columns using GridItem, controlling whether they are fixed, flexible, or adaptive.",
+                    "taskDescription":
+                        "Display a grid of 20 coloured squares using LazyVGrid with three adaptive columns. Each square should show a number in the centre.",
+                    "difficulty": 2
+                },
+                {
+                    "title": "Task and async/await in SwiftUI",
+                    "conceptExplanation":
+                        "The .task modifier runs an async function when a view appears and cancels it when the view disappears. This is the preferred way to load data in SwiftUI. async/await makes asynchronous code read like synchronous code — you write await before any call that takes time, and Swift handles the rest.",
+                    "taskDescription":
+                        "Create a view that fetches a random joke from https://official-joke-api.appspot.com/random_joke using URLSession. Display the setup and punchline when loaded, or a ProgressView while loading.",
+                    "difficulty": 3
+                },
+                {
+                    "title": "Custom transitions",
+                    "conceptExplanation":
+                        "SwiftUI views can enter and exit the screen with custom transitions using the .transition() modifier. Built-in options include .slide, .opacity, .scale, and .move(edge:). You can combine them with .combined(with:) or create fully custom transitions using AnyTransition.",
+                    "taskDescription":
+                        "Build a notification banner that slides in from the top when a button is tapped and fades out after 2 seconds. Use .transition(.move(edge: .top).combined(with: .opacity)) and withAnimation.",
+                    "difficulty": 3
+                },
+                {
+                    "title": "PreferenceKey — child to parent communication",
+                    "conceptExplanation": "PreferenceKey lets child views send values up to parent views — the opposite direction of Environment. A child sets a value using .preference(key:value:) and a parent reads it using .onPreferenceChange. This is useful for things like measuring child view sizes or propagating state upward without tight coupling.",
+                    "taskDescription":
+                        "Create a child view that reports its own height to a parent using a custom PreferenceKey. The parent displays the reported height as a Text label below the child.",
+                    "difficulty": 3
+                }
+            ]
     }
-  ]
-}

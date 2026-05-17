@@ -19,7 +19,7 @@ struct ChallengeCardView: View {
                     .font(.title3)
                     .fontDesign(.monospaced)
                     .multilineTextAlignment(.center)
-                
+
                 Text("Difficulty: \(challenge.difficulty) of 3")
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -89,8 +89,12 @@ struct ChallengeCardView: View {
 
         return NavigationStack {
             PreviewHelperView { challenge in
-                ChallengeCardView(challenge: challenge, onEdit: {}, onDelete: {})
-                    .background(CategoryGradient.fire.gradient)
+                ChallengeCardView(
+                    challenge: challenge,
+                    onEdit: {},
+                    onDelete: {}
+                )
+                .background(CategoryGradient.fire.gradient)
             }
             .modelContainer(container)
         }

@@ -9,10 +9,10 @@ import SwiftUI
 
 enum CategoryGradient: String, CaseIterable, Identifiable {
     var id: String { rawValue }
-    
+
     case ocean, sunset, forest, aurora, candy,
-         dusk, fire, mint, rose, midnight,
-         peach, storm, lavender, gold, jade
+        dusk, fire, mint, rose, midnight,
+        peach, storm, lavender, gold, jade
 
     var gradient: LinearGradient {
         switch self {

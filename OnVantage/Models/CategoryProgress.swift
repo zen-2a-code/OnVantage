@@ -39,15 +39,15 @@ class CategoryProgress {
         }
         .count
     }
-    
+
     var orderModeLabel: String {
-        isOrdered ? "Ordered": "Random"
+        isOrdered ? "Ordered" : "Random"
     }
-    
+
     var orderModeIcon: String {
         isOrdered ? "list.number" : "dice"
     }
-    
+
     var cyclesCompleted: Int {
         self.cycleNumber - 1
     }

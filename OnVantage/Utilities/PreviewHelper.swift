@@ -21,7 +21,8 @@ import SwiftData
             )
         }()
 
-        static func makeCategory(name: String = "Fitness") -> ChallengeCategory {
+        static func makeCategory(name: String = "Fitness") -> ChallengeCategory
+        {
             let category = ChallengeCategory(
                 name: name,
                 gradientName: CategoryGradient.peach.rawValue,
@@ -34,7 +35,8 @@ import SwiftData
             return category
         }
 
-        static func makeChallenge(for category: OnVantage.ChallengeCategory) -> Challenge
+        static func makeChallenge(for category: OnVantage.ChallengeCategory)
+            -> Challenge
         {
             let challenge = Challenge(
                 title: "Test Challenge",

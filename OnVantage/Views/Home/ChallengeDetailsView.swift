@@ -9,64 +9,90 @@ import SwiftData
 import SwiftUI
 
 struct ChallengeDetailsView: View {
-    var challenge: Challenge
+    @State private var viewModel: ViewModel
+    @Environment(\.dismiss) private var dismiss
+
+    init(
+        challenge: Challenge,
+        modelContext: ModelContext,
+        onNavigateBackToHomeScreen: @escaping () -> Void
+    ) {
+        self._viewModel = State(
+            initialValue: ViewModel(
+                challenge: challenge,
+                modelContext: modelContext,
+                onNavigateBackToHomeScreen: onNavigateBackToHomeScreen
+            )
+        )
+    }
     var body: some View {
         ZStack {
-            CategoryGradient(rawValue: "ocean")?.gradient
+            CategoryGradient(
+                rawValue: viewModel.challenge.category.gradientName
+            )?.gradient
                 .ignoresSafeArea()
-            
+
             GeometryReader { proxy in
                 ScrollView {
                     VStack(spacing: 20) {
                         HStack {
                             Image(systemName: "lightbulb.max")
                                 .font(.title)
-                            
+
                             Text("Concept Explanation")
                         }
-                        Text(challenge.conceptExplanation)
-                        
+                        Text(viewModel.challenge.conceptExplanation)
+
                         HStack {
                             Image(systemName: "dot.scope")
                                 .font(.title)
-                            
+
                             Text("Challenge:")
                         }
-                        Text(challenge.taskDescription)
-                        
+                        Text(viewModel.challenge.taskDescription)
+
                         Divider()
-                        
+
                         Button {
-                            
+                            viewModel.markComplete()
+                            if !viewModel.showCycleCompleteSheet {
+                                dismiss()
+                            }
                         } label: {
-                            Text("Completed")
+                            Label("Completed", systemImage: "checkmark")
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.borderedProminent)
                     }
                     .padding()
-                    .background(.thickMaterial.opacity(0.3))
+                    .background(.thickMaterial.opacity(0.6))
                     .cornerRadius(20)
                     .padding(.horizontal, 20)
                     .frame(maxWidth: .infinity, minHeight: proxy.size.height)
-                    
-                    
                 }
             }
         }
-        .navigationTitle(challenge.title)
+        .navigationTitle(viewModel.challenge.title)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $viewModel.showCycleCompleteSheet) {
+            CategoryFinishedView(
+                categoryName: viewModel.challenge.category.name,
+                onRestart: viewModel.restartCycle,
+                onArchive: viewModel.archiveCategory,
+                onDelete: viewModel.deleteCategory
+            )
+        }
     }
 }
 
 #if DEBUG
     private struct PreviewHelperView<Content: View>: View {
         @Query var challenges: [Challenge]
-        let content: (Challenge) -> Content
+        let content: (Challenge, ModelContext) -> Content
 
         var body: some View {
             if let challenge = challenges.first {
-                content(challenge)
+                content(challenge, PreviewHelper.container.mainContext)
             }
         }
     }
@@ -77,9 +103,11 @@ struct ChallengeDetailsView: View {
         SeedImporter.loadSeedData(context: container.mainContext)
 
         return NavigationStack {
-            PreviewHelperView { challenge in
+            PreviewHelperView { challenge, modelContext in
                 ChallengeDetailsView(
-                    challenge: challenge
+                    challenge: challenge,
+                    modelContext: modelContext,
+                    onNavigateBackToHomeScreen: {}
                 )
             }
             .modelContainer(container)
@@ -87,12 +115,12 @@ struct ChallengeDetailsView: View {
     }
 #endif
 
-#Preview {
-    let container = PreviewHelper.container
-    let category = PreviewHelper.makeCategory()
-    let challenge = PreviewHelper.makeChallenge(for: category)
-    NavigationStack {
-        ChallengeDetailsView(challenge: challenge)
-    }
-    .modelContainer(container)
-}
+//#Preview {
+//    let container = PreviewHelper.container
+//    let category = PreviewHelper.makeCategory()
+//    let challenge = PreviewHelper.makeChallenge(for: category)
+//    NavigationStack {
+//        ChallengeDetailsView(challenge: challenge)
+//    }
+//    .modelContainer(container)
+//}

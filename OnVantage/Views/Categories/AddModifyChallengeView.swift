@@ -89,7 +89,9 @@ struct AddModifyChallengeView: View {
                         dismiss()
                     } label: {
                         Image(systemName: "checkmark")
-                            .foregroundStyle(viewModel.isSaveDisabled ? .gray : .green)
+                            .foregroundStyle(
+                                viewModel.isSaveDisabled ? .gray : .green
+                            )
                     }
                     .disabled(viewModel.isSaveDisabled)
                 }

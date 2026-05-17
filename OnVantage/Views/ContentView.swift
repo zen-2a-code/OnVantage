@@ -10,24 +10,23 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query var categories: [ChallengeCategory]
     var body: some View {
         TabView {
-            HomeView(categories: categories)
+            HomeView(modelContext: modelContext)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-            
+
             CategoriesView(modelContext: modelContext)
                 .tabItem {
                     Label("Categories", systemImage: "square.grid.2x2")
                 }
-            
+
             ProgressScreenView()
                 .tabItem {
                     Label("Progress", systemImage: "chart.bar")
                 }
-            
+
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")

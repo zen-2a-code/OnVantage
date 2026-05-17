@@ -20,7 +20,17 @@ class ChallengeCategory {
     var challenges: [Challenge] = []
     var progress: CategoryProgress?
 
-    init(id: UUID = UUID(), name: String, gradientName: String, iconName: String, isActive: Bool, isUserCreated: Bool, createdAt: Date, challenges: [Challenge] = [], progress: CategoryProgress? = nil) {
+    init(
+        id: UUID = UUID(),
+        name: String,
+        gradientName: String,
+        iconName: String,
+        isActive: Bool,
+        isUserCreated: Bool,
+        createdAt: Date,
+        challenges: [Challenge] = [],
+        progress: CategoryProgress? = nil
+    ) {
         self.id = id
         self.name = name
         self.gradientName = gradientName

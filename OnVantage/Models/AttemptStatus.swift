@@ -9,4 +9,5 @@ import Foundation
 
 enum AttemptStatus: String, Codable {
     case completed, skipped
+    // inProgress intentionally omitted. Attempts are only recorded on completion/skip
 }

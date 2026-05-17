@@ -20,7 +20,17 @@ class Challenge: Equatable {
     var category: ChallengeCategory
     var attempts: [ChallengeAttempt] = []
 
-    init(id: UUID = UUID(), title: String, conceptExplanation: String, taskDescription: String, difficulty: Int, isUserCreated: Bool, createdAt: Date, category: ChallengeCategory, attempts: [ChallengeAttempt] = []) {
+    init(
+        id: UUID = UUID(),
+        title: String,
+        conceptExplanation: String,
+        taskDescription: String,
+        difficulty: Int,
+        isUserCreated: Bool,
+        createdAt: Date,
+        category: ChallengeCategory,
+        attempts: [ChallengeAttempt] = []
+    ) {
         self.id = id
         self.title = title
         self.conceptExplanation = conceptExplanation
@@ -31,7 +41,7 @@ class Challenge: Equatable {
         self.category = category
         self.attempts = attempts
     }
-    
+
     static func == (lhs: Challenge, rhs: Challenge) -> Bool {
         lhs.id == rhs.id
     }

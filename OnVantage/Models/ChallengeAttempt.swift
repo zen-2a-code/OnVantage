@@ -16,7 +16,13 @@ class ChallengeAttempt {
     var status: AttemptStatus
     var challenge: Challenge?
 
-    init(id: UUID = UUID(), startedAt: Date, completedAt: Date? = nil, status: AttemptStatus, challenge: Challenge? = nil) {
+    init(
+        id: UUID = UUID(),
+        startedAt: Date,
+        completedAt: Date? = nil,
+        status: AttemptStatus,
+        challenge: Challenge? = nil
+    ) {
         self.id = id
         self.startedAt = startedAt
         self.completedAt = completedAt
