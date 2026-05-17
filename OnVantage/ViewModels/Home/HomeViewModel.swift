@@ -89,10 +89,13 @@ extension HomeView {
             return false
         }
 
-        func skip(for category: ChallengeCategory) {
+        func skip(for category: ChallengeCategory, challenge: Challenge) {
             guard let progress = category.progress else { return }
             guard progress.skipsRemainingThisCycle > 0 else { return }
             StreakCalculator.recordSkip(for: progress)
+            let skipAttempt = ChallengeAttempt(startedAt: .now, status: .skipped, challenge: challenge)
+            challenge.attempts.append(skipAttempt)
+            modelContext.insert(skipAttempt)
             try? modelContext.save()
         }
 

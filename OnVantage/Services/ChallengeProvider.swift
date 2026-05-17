@@ -27,7 +27,7 @@ enum ChallengeProvider {
                 Calendar.current.isDate(
                     attempt.startedAt,
                     inSameDayAs: todayDate
-                ) && attempt.status == .completed
+                ) && (attempt.status == .completed || attempt.status == .skipped)
             }
         }
 

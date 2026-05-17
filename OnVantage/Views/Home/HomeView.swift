@@ -78,7 +78,7 @@ struct HomeView: View {
                                                     role: .destructive
                                                 ) {
                                                     viewModel.skip(
-                                                        for: category
+                                                        for: category, challenge: challenge
                                                     )
                                                 }
                                                 .disabled(
