@@ -44,6 +44,9 @@ struct CategoriesView: View {
             .sheet(isPresented: $viewModel.showNewCategorySheet) {
                 AddCategoryView(modelContext: viewModel.modelContext)
             }
+            .sheet(isPresented: $viewModel.showImportSheet) {
+                ImportCategoryView(modelContext: viewModel.modelContext)
+            }
             .alert(
                 "Delete \(viewModel.categoryToDelete?.name ?? "")",
                 isPresented: $viewModel.showDeleteAlert
@@ -75,7 +78,7 @@ struct CategoriesView: View {
                         viewModel.showImportSheet = true
                     } label: {
                         Label(
-                            "Import from CSV",
+                            "Import from JSON",
                             systemImage: "square.and.arrow.down"
                         )
                     }

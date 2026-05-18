@@ -1,0 +1,130 @@
+{
+  "category": {
+    "name": "Wim Hof Method",
+    "gradientName": "ocean",
+    "iconName": "wind"
+  },
+  "isOrdered": true,
+  "challenges": [
+    {
+      "title": "First Breath Round",
+      "conceptExplanation": "The Wim Hof breathing technique involves controlled hyperventilation followed by breath retention. It increases oxygen saturation, reduces CO2, and activates the sympathetic nervous system. This is your starting point — one round to feel the basics.",
+      "taskDescription": "Do 1 round of 30 deep Wim Hof breaths, then exhale fully and hold for as long as comfortable. Inhale deeply and hold for 15 seconds, then release.",
+      "difficulty": 1
+    },
+    {
+      "title": "Three Round Foundation",
+      "conceptExplanation": "Three consecutive breathing rounds is the standard Wim Hof session. Each round deepens the physiological effect — alkalizing the blood, reducing inflammation markers, and increasing focus. Consistency across rounds trains your nervous system.",
+      "taskDescription": "Complete 3 rounds of 30 Wim Hof breaths with full exhale retention after each round. Rest 1–2 minutes between rounds.",
+      "difficulty": 1
+    },
+    {
+      "title": "Cold Finish",
+      "conceptExplanation": "Cold exposure at the end of a shower activates brown adipose tissue and releases norepinephrine, which boosts mood and alertness. Starting with just 20 seconds removes the psychological barrier to cold exposure.",
+      "taskDescription": "Complete your normal shower, then switch to cold water for the last 20 seconds. Focus on slow, controlled breathing during the cold.",
+      "difficulty": 1
+    },
+    {
+      "title": "Breathe Then Freeze",
+      "conceptExplanation": "Combining breathing and cold exposure on the same day compounds their benefits. The breathing session pre-activates your stress response, making the cold feel more manageable and the adaptation stronger.",
+      "taskDescription": "Do 3 rounds of Wim Hof breathing, then take a 30-second cold shower ending your session.",
+      "difficulty": 2
+    },
+    {
+      "title": "Extended Breath Hold",
+      "conceptExplanation": "After 30 breaths, your blood is highly oxygenated and CO2 is low, which suppresses the urge to breathe. Extending the retention phase trains breath hold capacity and mental tolerance for discomfort.",
+      "taskDescription": "Do 3 rounds of 30 Wim Hof breaths. On each round, push your exhale retention to at least 1 minute. Record your best hold time.",
+      "difficulty": 2
+    },
+    {
+      "title": "Morning Cold Shower",
+      "conceptExplanation": "Cold exposure in the morning spikes cortisol and norepinephrine in a healthy, controlled way — priming alertness and mood for the day. Morning timing also builds discipline before the day's decisions drain willpower.",
+      "taskDescription": "Take a fully cold shower first thing in the morning for at least 1 minute. Breathe slowly and do not tense your body.",
+      "difficulty": 2
+    },
+    {
+      "title": "Push-ups on Empty Lungs",
+      "conceptExplanation": "One of Wim Hof's demonstrations involves doing push-ups during the exhale breath hold. With low CO2 and high oxygen saturation, the body can sustain effort longer than expected — this challenges your mental assumptions about limits.",
+      "taskDescription": "After your 30 breaths, exhale fully and do as many push-ups as possible during the breath hold. Record the number. Do 2 rounds.",
+      "difficulty": 2
+    },
+    {
+      "title": "Two-Minute Cold Shower",
+      "conceptExplanation": "Two minutes of cold exposure is where measurable physiological adaptation begins — sustained norepinephrine release, improved circulation, and reduced inflammation. The first 30 seconds are hardest; after that, the body begins adapting.",
+      "taskDescription": "Take a fully cold shower and stay in for exactly 2 minutes. Use Wim Hof breathing rhythm to stay calm if needed.",
+      "difficulty": 2
+    },
+    {
+      "title": "Four Round Session",
+      "conceptExplanation": "Adding a fourth breathing round increases total session depth and trains concentration. Fatigue across rounds is partly mental — this challenge builds the awareness to distinguish real limits from perceived ones.",
+      "taskDescription": "Complete 4 full rounds of 30 Wim Hof breaths with exhale retentions. Take note of how your hold times change between rounds.",
+      "difficulty": 2
+    },
+    {
+      "title": "Breath Hold Walk",
+      "conceptExplanation": "Walking during a breath hold combines mild physical stress with CO2 tolerance training. This is an advanced CO2 table exercise used in freediving — it teaches the body to stay calm under oxygen stress.",
+      "taskDescription": "After a full exhale, walk as far as you can before taking your next breath. Do this 3 times with 2 minutes rest between attempts. Track your distance.",
+      "difficulty": 2
+    },
+    {
+      "title": "Cold and Meditation Combo",
+      "conceptExplanation": "Following cold exposure with a meditation session extends the neurological calm that cold induces. The post-cold state — heart rate recovering, endorphins elevated — is an ideal window for deep focus and mindfulness.",
+      "taskDescription": "Take a 2-minute cold shower, then immediately sit and meditate for 10 minutes focusing only on your breath and body sensations.",
+      "difficulty": 2
+    },
+    {
+      "title": "Outdoor Cold Exposure",
+      "conceptExplanation": "Outdoor cold — whether a lake, river, or even standing outside in cold weather — adds environmental unpredictability that a shower cannot replicate. Wind and immersion create stronger physiological and psychological challenges.",
+      "taskDescription": "Spend at least 2 minutes in outdoor cold — a cold lake, river, or standing outside in minimal clothing in cold weather. Do your breathing beforehand.",
+      "difficulty": 3
+    },
+    {
+      "title": "Five Round Breathing Marathon",
+      "conceptExplanation": "Five consecutive rounds tests your focus, patience, and physical stamina. Each round takes roughly 3–5 minutes — this is a 20-minute commitment that trains both the body and the mind to sustain intentional effort.",
+      "taskDescription": "Complete 5 full rounds of 30 Wim Hof breaths with full exhale retentions. Rest no more than 90 seconds between rounds.",
+      "difficulty": 3
+    },
+    {
+      "title": "Cold Plunge",
+      "conceptExplanation": "Full-body cold water immersion produces a dramatically stronger physiological response than a shower. Core temperature drops faster, norepinephrine release is higher, and the psychological challenge is significantly greater.",
+      "taskDescription": "Submerge your body in cold water — a cold bath, ice bath, or natural body of water — for at least 2 minutes. Do 3 rounds of Wim Hof breathing beforehand.",
+      "difficulty": 3
+    },
+    {
+      "title": "Retention Push-up PR",
+      "conceptExplanation": "With practiced breathwork, your exhale retention performance improves over time. Testing your push-up count on empty lungs measures real progress — both in oxygen efficiency and in mental resilience under physical stress.",
+      "taskDescription": "Do 3 rounds of 30 breaths. On the third round exhale retention, perform as many push-ups as possible. Try to beat your previous record from Challenge 7.",
+      "difficulty": 3
+    },
+    {
+      "title": "Three-Minute Cold Shower",
+      "conceptExplanation": "Three minutes of full cold shower exposure is a significant physiological milestone. Studies show sustained cold exposure at this duration meaningfully increases dopamine baseline and immune response markers.",
+      "taskDescription": "Take a fully cold shower for 3 continuous minutes. Do not warm up during it. Use slow nasal breathing to manage the discomfort.",
+      "difficulty": 3
+    },
+    {
+      "title": "Morning Full Protocol",
+      "conceptExplanation": "The complete Wim Hof morning protocol — breathing, cold exposure, and brief mindfulness — is designed as a daily system, not individual exercises. Doing it all together before breakfast maximizes hormonal and neurological benefits.",
+      "taskDescription": "Before breakfast: complete 3 rounds of Wim Hof breathing, then take a 2-minute cold shower, then sit quietly for 5 minutes. No phone until all three are done.",
+      "difficulty": 3
+    },
+    {
+      "title": "Extended Cold Plunge",
+      "conceptExplanation": "Extending cold immersion beyond 2 minutes deepens the adaptation signal and tests mental composure at an advanced level. Wim Hof recommends building toward longer immersions gradually — this is a significant step.",
+      "taskDescription": "Do a cold plunge lasting at least 4 minutes. Complete 3 rounds of Wim Hof breathing beforehand. Focus on relaxing every muscle group during immersion.",
+      "difficulty": 3
+    },
+    {
+      "title": "Seven-Day Streak Commitment",
+      "conceptExplanation": "Habit research shows that 7 consecutive days of a practice begins to shift it from effortful action to automatic behavior. A week of daily cold exposure and breathing creates measurable baseline changes in mood and energy.",
+      "taskDescription": "Commit to 7 consecutive days of at least 3 rounds of Wim Hof breathing plus a minimum 1-minute cold shower each day. Track each day with a checkmark.",
+      "difficulty": 3
+    },
+    {
+      "title": "The Full Wim Hof Day",
+      "conceptExplanation": "This challenge combines everything practiced across the program into one complete day. It is a personal benchmark — proof that you have internalized the method and can execute it as a full system, not just isolated exercises.",
+      "taskDescription": "Morning: 4 rounds of Wim Hof breathing. Mid-day: outdoor cold exposure or cold plunge for at least 3 minutes. Evening: 10-minute meditation. No skipping any part.",
+      "difficulty": 3
+    }
+  ]
+}

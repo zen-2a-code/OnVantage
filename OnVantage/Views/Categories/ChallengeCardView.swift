@@ -85,7 +85,7 @@ struct ChallengeCardView: View {
     #Preview {
         let container = PreviewHelper.container
         UserDefaults.standard.removeObject(forKey: "didSeedV1")
-        SeedImporter.loadSeedData(context: container.mainContext)
+        SeedImporter.loadSeedData(context: container.mainContext, resource: "seed_swiftui")
 
         return NavigationStack {
             PreviewHelperView { challenge in

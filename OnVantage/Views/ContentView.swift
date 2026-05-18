@@ -28,7 +28,8 @@ struct ContentView: View {
                 }
         }
         .onAppear {
-            SeedImporter.loadSeedData(context: modelContext)
+            SeedImporter.loadSeedData(context: modelContext, resource: "seed_swiftui")
+            SeedImporter.loadSeedData(context: modelContext, resource: "wim_hof_challenges")
         }
     }
 }

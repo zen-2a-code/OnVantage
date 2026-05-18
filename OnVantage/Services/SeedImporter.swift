@@ -9,14 +9,15 @@ import Foundation
 import SwiftData
 
 enum SeedImporter {
-    static func loadSeedData(context: ModelContext) {
-        guard !UserDefaults.standard.bool(forKey: "didSeedV1") else { return }
+    static func loadSeedData(context: ModelContext, resource: String) {
+        let seedKey = "didSeed_\(resource)"
+        guard !UserDefaults.standard.bool(forKey: seedKey) else { return }
 
         let jsonDecoder = JSONDecoder()
 
         guard
             let seedURL = Bundle.main.url(
-                forResource: "seed_swiftui",
+                forResource: resource,
                 withExtension: "json"
             )
         else {
@@ -67,18 +68,22 @@ enum SeedImporter {
 
         let categoryProgress = CategoryProgress(
             category: swiftCategory,
-            cycleStartedAt: .now
+            cycleStartedAt: .now,
+            isOrdered: seedFileDTO.isOrdered
         )
-        categoryProgress.challengeQueueOrder = challengesUUIDS.shuffled()
+        categoryProgress.challengeQueueOrder = seedFileDTO.isOrdered
+            ? challengesUUIDS
+            : challengesUUIDS.shuffled()
         swiftCategory.progress = categoryProgress
 
         context.insert(swiftCategory)
-        UserDefaults.standard.set(true, forKey: "didSeedV1")
+        UserDefaults.standard.set(true, forKey: seedKey)
     }
 }
 
 struct SeedFileDTO: Codable {
     var category: SeedCategoryDTO
+    var isOrdered: Bool
     var challenges: [SeedChallangeDTO]
 }
 

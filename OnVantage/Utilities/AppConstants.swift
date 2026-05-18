@@ -9,20 +9,34 @@ import Foundation
 
 enum AppConstants {
     static let categoryIcons: [String] = [
-        "star.fill",  // favourites, goals, anything important
-        "book.fill",  // learning, reading, study
-        "heart.fill",  // health, relationships, self-care
-        "bolt.fill",  // habits, energy, productivity
-        "dumbbell.fill",  // fitness, sport, physical
-        "music.note",  // music, creative, audio
-        "paintbrush.fill",  // art, design, creative
-        "fork.knife",  // food, cooking, nutrition
-        "house.fill",  // home, chores, domestic
-        "briefcase.fill",  // work, career, business
-        "globe.europe.africa",  // language, travel, geography
-        "brain.fill",  // mental health, mindfulness, thinking ( iOS 18+ )
-        "calendar",  // planning, routines, scheduling
-        "message.fill",  // communication, social, relationships
-        "leaf.fill",  // nature, wellness, sustainability
+        "star.fill",
+        "book.fill",
+        "heart.fill",
+        "bolt.fill",
+        "dumbbell.fill",
+        "music.note",
+        "paintbrush.fill",
+        "fork.knife",
+        "house.fill",
+        "briefcase.fill",
+        "globe.europe.africa",
+        "brain.fill",
+        "calendar",
+        "message.fill",
+        "leaf.fill",
+        "figure.run",
+        "figure.yoga",
+        "moon.stars.fill",
+        "sun.max.fill",
+        "trophy.fill",
+        "chart.line.uptrend.xyaxis",
+        "wind",
+        "clock.fill",
+        "pencil",
+        "camera.fill",
+        "headphones",
+        "person.2.fill",
+        "drop.fill",
+        "pills.fill",
     ]
 }

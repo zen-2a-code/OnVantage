@@ -11,8 +11,8 @@ enum CategoryGradient: String, CaseIterable, Identifiable {
     var id: String { rawValue }
 
     case ocean, sunset, forest, aurora, candy,
-        dusk, fire, mint, rose, midnight,
-        peach, storm, lavender, gold, jade
+        dusk, fire, mint, rose, powder,
+        peach, sand, lavender, gold, jade
 
     var gradient: LinearGradient {
         switch self {
@@ -34,18 +34,18 @@ enum CategoryGradient: String, CaseIterable, Identifiable {
             return make("#00B09B", "#96C93D")
         case .rose:
             return make("#FF758C", "#FF7EB3")
-        case .midnight:
-            return make("#141E30", "#243B55")
         case .peach:
             return make("#FFAA85", "#FF6B6B")
-        case .storm:
-            return make("#182848", "#4B6CB7")
         case .lavender:
             return make("#A18CD1", "#FBC2EB")
         case .gold:
             return make("#F7971E", "#FFD200")
         case .jade:
             return make("#11998E", "#38EF7D")
+        case .powder:
+            return make("#A1C4FD", "#C2E9FB")
+        case .sand:
+            return make("#F5CBA7", "#F0B27A")
         }
     }
 
