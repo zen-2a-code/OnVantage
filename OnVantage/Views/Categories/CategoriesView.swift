@@ -64,8 +64,21 @@ struct CategoriesView: View {
             .navigationTitle("Categories")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                Button {
-                    viewModel.showNewCategorySheet = true
+                Menu {
+                    Button {
+                        viewModel.showNewCategorySheet = true
+                    } label: {
+                        Label("Add Category", systemImage: "plus")
+                    }
+
+                    Button {
+                        viewModel.showImportSheet = true
+                    } label: {
+                        Label(
+                            "Import from CSV",
+                            systemImage: "square.and.arrow.down"
+                        )
+                    }
                 } label: {
                     Image(systemName: "plus")
                 }

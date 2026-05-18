@@ -22,11 +22,6 @@ struct ContentView: View {
                     Label("Categories", systemImage: "square.grid.2x2")
                 }
 
-            ProgressScreenView()
-                .tabItem {
-                    Label("Progress", systemImage: "chart.bar")
-                }
-
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")

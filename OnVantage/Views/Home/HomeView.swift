@@ -11,10 +11,6 @@ import SwiftUI
 
 struct HomeView: View {
     @Query var categories: [ChallengeCategory]
-
-    var activeCategories: [ChallengeCategory] {
-        categories.filter { $0.isActive }
-    }
     @State var viewModel: ViewModel
 
     init(modelContext: ModelContext) {
@@ -28,7 +24,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {
             ScrollView {
-                ForEach(activeCategories) { category in
+                ForEach(viewModel.sortedActiveCategories(from: categories)) { category in
                     VStack {
                         Text(category.name)
                             .font(.largeTitle)
@@ -78,7 +74,8 @@ struct HomeView: View {
                                                     role: .destructive
                                                 ) {
                                                     viewModel.skip(
-                                                        for: category, challenge: challenge
+                                                        for: category,
+                                                        challenge: challenge
                                                     )
                                                 }
                                                 .disabled(
@@ -154,7 +151,7 @@ struct HomeView: View {
             )
             .onAppear {
                 viewModel.tickCountdown()
-                activeCategories.forEach { category in
+                viewModel.sortedActiveCategories(from: categories).forEach { category in
                     if let progress = category.progress {
                         StreakCalculator.evaluateStreakStatus(for: progress)
                     }

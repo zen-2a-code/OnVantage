@@ -15,6 +15,7 @@ extension CategoriesView {
         var showDeleteAlert: Bool = false
         var showNewCategorySheet: Bool = false
         var categoryToDelete: ChallengeCategory? = nil
+        var showImportSheet: Bool = false
 
         init(modelContext: ModelContext) {
             self.modelContext = modelContext

@@ -29,6 +29,14 @@ extension HomeView {
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
         }
+        
+        func sortedActiveCategories(from categories: [ChallengeCategory]) -> [ChallengeCategory] {
+            categories.filter { $0.isActive }.sorted { a, b in
+                let dateA = a.progress?.lastActivityDate ?? .distantPast
+                let dateB = b.progress?.lastActivityDate ?? .distantPast
+                return dateA < dateB
+            }
+        }
 
         func tickCountdown() {
             let calendar = Calendar.current
