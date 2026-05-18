@@ -42,7 +42,7 @@ struct ImportIdleView: View {
         - is_ordered: true if challenges build on each other, false for random order
         - concept_explanation: 2–3 sentences on the why and what
         - task_description: 1–2 sentences, specific and actionable for one day
-        - Return ONLY the JSON (the .json file) — nothing else
+        - Return ONLY the Downloadble JSON (the .json file) — nothing else, not in chat response, but a downloadble .json file.
         """
 
     var body: some View {
