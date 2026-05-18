@@ -36,3 +36,19 @@ struct IconPickerView: View {
         }
     }
 }
+
+#if DEBUG
+    #Preview {
+        IconPickerPreviewWrapper()
+            .modelContainer(PreviewHelper.container)
+            .padding()
+    }
+
+    private struct IconPickerPreviewWrapper: View {
+        @State private var selection: String = "star.fill"
+
+        var body: some View {
+            IconPickerView(selection: $selection)
+        }
+    }
+#endif

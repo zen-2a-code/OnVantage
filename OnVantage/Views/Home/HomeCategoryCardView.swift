@@ -5,6 +5,7 @@
 //  Created by Stoyan Hristov on 18.05.26.
 //
 
+import SwiftData
 import SwiftUI
 
 struct HomeCategoryCardView: View {
@@ -133,3 +134,40 @@ struct HomeCategoryCardView: View {
         .padding(.vertical, 4)
     }
 }
+
+#if DEBUG
+    #Preview("Has Challenge") {
+        let container = PreviewHelper.container
+        let category = PreviewHelper.makeCategory(name: "Fitness")
+        let _ = PreviewHelper.makeProgress(for: category)
+        let challenge = PreviewHelper.makeChallenge(for: category)
+        return NavigationStack {
+            HomeCategoryCardView(
+                category: category,
+                challenge: challenge,
+                hasChallenge: true,
+                statusText: "2h 14m left",
+                hourGlassRotationAngle: 0,
+                onSkip: {}
+            )
+        }
+        .modelContainer(container)
+    }
+
+    #Preview("Done for Today") {
+        let container = PreviewHelper.container
+        let category = PreviewHelper.makeCategory(name: "Mindfulness")
+        let _ = PreviewHelper.makeProgress(for: category)
+        return NavigationStack {
+            HomeCategoryCardView(
+                category: category,
+                challenge: nil,
+                hasChallenge: false,
+                statusText: "Next challenge tomorrow",
+                hourGlassRotationAngle: 0,
+                onSkip: {}
+            )
+        }
+        .modelContainer(container)
+    }
+#endif

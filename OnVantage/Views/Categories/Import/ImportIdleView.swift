@@ -61,7 +61,7 @@ struct ImportIdleView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
                 .background(.thinMaterial)
-                .cornerRadius(16)
+                .clipShape(.rect(cornerRadius: 16))
 
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
@@ -87,7 +87,7 @@ struct ImportIdleView: View {
                 }
                 .padding()
                 .background(.thinMaterial)
-                .cornerRadius(16)
+                .clipShape(.rect(cornerRadius: 16))
 
                 Button {
                     viewModel.showFilePicker = true

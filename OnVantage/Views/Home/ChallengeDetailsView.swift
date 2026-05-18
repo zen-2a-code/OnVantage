@@ -87,7 +87,7 @@ struct ChallengeDetailsView: View {
                     }
                     .padding(24)
                     .background(.regularMaterial)
-                    .cornerRadius(20)
+                    .clipShape(.rect(cornerRadius: 20))
                     .padding(.horizontal, 20)
                     .frame(maxWidth: .infinity, minHeight: proxy.size.height)
                 }

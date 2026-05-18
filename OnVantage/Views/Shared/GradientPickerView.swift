@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GradientPickerView: View {
     @Binding var selection: CategoryGradient
@@ -28,3 +29,19 @@ struct GradientPickerView: View {
         }
     }
 }
+
+#if DEBUG
+    #Preview {
+        GradientPickerPreviewWrapper()
+            .modelContainer(PreviewHelper.container)
+            .padding()
+    }
+
+    private struct GradientPickerPreviewWrapper: View {
+        @State private var selection: CategoryGradient = .ocean
+
+        var body: some View {
+            GradientPickerView(selection: $selection)
+        }
+    }
+#endif
