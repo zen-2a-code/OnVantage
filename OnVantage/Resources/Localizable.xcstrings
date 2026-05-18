@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     " | " : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "|"
+          }
+        }
+      }
     },
     "Active" : {
       "localizations" : {
@@ -24,8 +31,25 @@
         }
       }
     },
+    "Add a category in the Categories tab to get started." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави категория в таба Категории, за да започнеш."
+          }
+        }
+      }
+    },
     "Add Category" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добави категория"
+          }
+        }
+      }
     },
     "Add new category" : {
       "localizations" : {
@@ -37,8 +61,35 @@
         }
       }
     },
+    "AI Prompt Template" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Шаблон за AI заявка"
+          }
+        }
+      }
+    },
+    "App Language" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Език на приложението"
+          }
+        }
+      }
+    },
     "Archive Category" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Архивирай категория"
+          }
+        }
+      }
     },
     "Are you sure you want to delete this category?" : {
       "comment" : "A confirmation dialog that appears when the user deletes a category.",
@@ -48,6 +99,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Сигурен ли си, че искаш да изтриеш тази категория?"
+          }
+        }
+      }
+    },
+    "best" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "рекорд"
           }
         }
       }
@@ -87,10 +148,24 @@
       }
     },
     "Category Complete!" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категорията е завършена!"
+          }
+        }
+      }
     },
     "Category created on: %@" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Категорията е създадена на: %@"
+          }
+        }
+      }
     },
     "Category icon" : {
       "localizations" : {
@@ -102,14 +177,65 @@
         }
       }
     },
+    "Category Name" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Име на категория"
+          }
+        }
+      }
+    },
     "Challenge" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предизвикателство"
+          }
+        }
+      }
     },
     "Challenge information" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация за предизвикателството"
+          }
+        }
+      }
+    },
+    "Challenge Information" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Информация за предизвикателството"
+          }
+        }
+      }
     },
     "Challenge:" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предизвикателство:"
+          }
+        }
+      }
+    },
+    "Challenges" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предизвикателства"
+          }
+        }
+      }
     },
     "Challenges %lld/%lld" : {
       "comment" : "A subheading that shows the number of challenges completed and the total number of challenges for a category.",
@@ -142,22 +268,124 @@
       }
     },
     "Challenges order - %@" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ред на предизвикателствата - %@"
+          }
+        }
+      }
+    },
+    "Color" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цвят"
+          }
+        }
+      }
     },
     "Completed" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завършено"
+          }
+        }
+      }
+    },
+    "Concept" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Концепция"
+          }
+        }
+      }
     },
     "Concept Explanation" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обяснение на концепцията"
+          }
+        }
+      }
+    },
+    "Copy" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Копирай"
+          }
+        }
+      }
     },
     "Current Streak: %lld" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текуща серия: %lld"
+          }
+        }
+      }
+    },
+    "Cycle %lld" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цикъл %lld"
+          }
+        }
+      }
     },
     "Cycles completed: %lld" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завършени цикли: %lld"
+          }
+        }
+      }
     },
     "Daily Challenges" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ежедневни предизвикателства"
+          }
+        }
+      }
+    },
+    "Daily Reminder" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ежедневно напомняне"
+          }
+        }
+      }
+    },
+    "Data" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данни"
+          }
+        }
+      }
     },
     "Delete" : {
       "localizations" : {
@@ -182,40 +410,126 @@
       }
     },
     "Delete %@?" : {
-
-    },
-    "Delete Category" : {
-
-    },
-    "Difficulty: %lld" : {
-
-    },
-    "Difficulty: %lld of 3" : {
-
-    },
-    "Edit" : {
-
-    },
-    "Enter category name" : {
-      "extractionState" : "stale",
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Въведи име за категория"
+            "value" : "Изтрий %@?"
+          }
+        }
+      }
+    },
+    "Delete Category" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изтрий категория"
+          }
+        }
+      }
+    },
+    "Difficulty" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трудност"
+          }
+        }
+      }
+    },
+    "Difficulty: %lld" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трудност: %lld"
+          }
+        }
+      }
+    },
+    "Difficulty: %lld of 3" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трудност: %lld от 3"
+          }
+        }
+      }
+    },
+    "Done for today!" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готово за днес!"
+          }
+        }
+      }
+    },
+    "Easy" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лесно"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактирай"
           }
         }
       }
     },
     "Enter title" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Въведи заглавие"
+          }
+        }
+      }
     },
     "Good job!" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Браво!"
+          }
+        }
+      }
+    },
+    "Hard" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трудно"
+          }
+        }
+      }
     },
     "Hello from SettingsView" : {
       "comment" : "A label displayed in the settings view.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Здравей от SettingsView"
+          }
+        }
+      }
     },
     "Home" : {
       "localizations" : {
@@ -227,11 +541,95 @@
         }
       }
     },
+    "How it works" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как работи"
+          }
+        }
+      }
+    },
+    "Icon" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иконка"
+          }
+        }
+      }
+    },
+    "Import" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай"
+          }
+        }
+      }
+    },
     "Import from CSV" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай от CSV"
+          }
+        }
+      }
+    },
+    "Import from JSON" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортирай от JSON"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Език"
+          }
+        }
+      }
     },
     "Longest Streak: %lld" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Най-дълга серия: %lld"
+          }
+        }
+      }
+    },
+    "Mark Complete" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Маркирай като завършено"
+          }
+        }
+      }
+    },
+    "Medium" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средно"
+          }
+        }
+      }
     },
     "Name" : {
       "localizations" : {
@@ -243,31 +641,195 @@
         }
       }
     },
-    "No challenges" : {
-
-    },
-    "Or add some more?" : {
-
-    },
-    "Progress" : {
-      "extractionState" : "stale",
+    "No Active Challenges" : {
       "localizations" : {
         "bg" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Прогрес"
+            "value" : "Няма активни предизвикателства"
+          }
+        }
+      }
+    },
+    "No Categories Yet" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все още няма категории"
+          }
+        }
+      }
+    },
+    "No challenges" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма предизвикателства"
+          }
+        }
+      }
+    },
+    "No Challenges" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Няма предизвикателства"
+          }
+        }
+      }
+    },
+    "Notifications" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Известия"
+          }
+        }
+      }
+    },
+    "Notifications Disabled" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Известията са изключени"
+          }
+        }
+      }
+    },
+    "Open Settings" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отвори настройките"
+          }
+        }
+      }
+    },
+    "Or add some more?" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Или добави още?"
+          }
+        }
+      }
+    },
+    "Ordered" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наредени"
+          }
+        }
+      }
+    },
+    "Please enable notifications for OnVantage in Settings to use this feature." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Моля, активирайте известията за OnVantage в Настройки, за да използвате тази функция."
+          }
+        }
+      }
+    },
+    "Random" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произволно"
           }
         }
       }
     },
     "Random challenge order" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произволен ред на предизвикателствата"
+          }
+        }
+      }
     },
     "Ready?" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готов?"
+          }
+        }
+      }
+    },
+    "Reminder Time" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час на напомнянето"
+          }
+        }
+      }
+    },
+    "Reseed" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови"
+          }
+        }
+      }
+    },
+    "Reseed Sample Data" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови примерни данни"
+          }
+        }
+      }
+    },
+    "Reseed Sample Data?" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Възстанови примерни данни?"
+          }
+        }
+      }
     },
     "Restart Challenges" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рестартирай предизвикателствата"
+          }
+        }
+      }
+    },
+    "Select JSON File" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избери JSON файл"
+          }
+        }
+      }
     },
     "Settings" : {
       "localizations" : {
@@ -280,7 +842,34 @@
       }
     },
     "Skip (%lld left)" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропусни (%lld останали)"
+          }
+        }
+      }
+    },
+    "Start Challenge" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Започни предизвикателството"
+          }
+        }
+      }
+    },
+    "streak" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "серия"
+          }
+        }
+      }
     },
     "Style" : {
       "localizations" : {
@@ -292,17 +881,115 @@
         }
       }
     },
+    "Tap + to add your first category or import one from JSON." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Натисни + за да добавиш първата категория или импортирай от JSON."
+          }
+        }
+      }
+    },
+    "Tap + to add your first challenge." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Натисни + за да добавиш първото предизвикателство."
+          }
+        }
+      }
+    },
+    "Task Description" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Описание на задачата"
+          }
+        }
+      }
+    },
+    "This will add the SwiftUI and Wim Hof sample categories again. Your existing data will not be affected." : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Това ще добави отново примерните категории SwiftUI и Wim Hof. Съществуващите данни няма да бъдат засегнати."
+          }
+        }
+      }
+    },
     "This will permanently delete the category and all its challenges." : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Това ще изтрие категорията и всички предизвикателства завинаги."
+          }
+        }
+      }
+    },
+    "Time" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Час"
+          }
+        }
+      }
     },
     "Time remaining:" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставащо време:"
+          }
+        }
+      }
+    },
+    "Title" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавие"
+          }
+        }
+      }
     },
     "Title:" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заглавие:"
+          }
+        }
+      }
     },
     "You've completed all challenges in %@. What's next?" : {
-
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завърши всички предизвикателства в %@. Какво следва?"
+          }
+        }
+      }
+    },
+    "Your Task" : {
+      "localizations" : {
+        "bg" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твоята задача"
+          }
+        }
+      }
     }
   },
   "version" : "1.2"

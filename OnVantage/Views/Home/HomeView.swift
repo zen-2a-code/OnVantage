@@ -12,6 +12,7 @@ import SwiftUI
 struct HomeView: View {
     @Query var categories: [ChallengeCategory]
     @State var viewModel: ViewModel
+    @Environment(DeepLinkHandler.self) private var deepLinkHandler
 
     init(modelContext: ModelContext) {
         self._viewModel = State(
@@ -78,6 +79,16 @@ struct HomeView: View {
             .onReceive(viewModel.countDownTimer) { _ in
                 viewModel.tickCountdown()
             }
+            .onChange(of: deepLinkHandler.pendingCategoryId) { _, categoryId in
+                guard let categoryId else { return }
+                defer { deepLinkHandler.pendingCategoryId = nil }
+
+                guard let category = activeCategories.first(where: { $0.id == categoryId }),
+                    let challenge = viewModel.nextChallenge(for: category)
+                else { return }
+
+                viewModel.navigationPath.append(challenge)
+            }
         }
     }
 
@@ -105,5 +116,6 @@ struct HomeView: View {
             HomeView(modelContext: container.mainContext)
         }
         .modelContainer(container)
+        .environment(DeepLinkHandler())
     }
 #endif

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct IconPickerView: View {
     @Binding var selection: String

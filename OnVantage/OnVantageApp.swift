@@ -7,12 +7,22 @@
 
 import SwiftData
 import SwiftUI
+@preconcurrency import UserNotifications
 
 @main
 struct OnVantageApp: App {
+    private let deepLinkHandler = DeepLinkHandler()
+    private let notificationDelegate = NotificationDelegate()
+
+    init() {
+        notificationDelegate.deepLinkHandler = deepLinkHandler
+        UNUserNotificationCenter.current().delegate = notificationDelegate
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(deepLinkHandler)
         }
         .modelContainer(for: [
             ChallengeCategory.self,

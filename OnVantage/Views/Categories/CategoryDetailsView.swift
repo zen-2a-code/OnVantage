@@ -85,7 +85,7 @@ struct CategoryDetailsView: View {
                 .padding(.top, 20)
             } else {
                 VStack(spacing: 8) {
-                    ForEach(category.challenges) { challenge in
+                    ForEach(viewModel.sortedChallenges(for: category)) { challenge in
                         ChallengeCardView(
                             challenge: challenge,
                             onEdit: { viewModel.requestEdit(challenge) },
@@ -107,11 +107,22 @@ struct CategoryDetailsView: View {
         .toolbar {
             ToolbarItem {
                 Button {
+                    viewModel.showNotificationSheet = true
+                } label: {
+                    Image(systemName: "bell")
+                }
+            }
+
+            ToolbarItem {
+                Button {
                     viewModel.requestAdd()
                 } label: {
                     Image(systemName: "plus")
                 }
             }
+        }
+        .sheet(isPresented: $viewModel.showNotificationSheet) {
+            NotificationSettingsView(category: category)
         }
         .sheet(isPresented: $viewModel.showAddModifyChallengeSheet) {
             AddModifyChallengeView(

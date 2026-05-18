@@ -15,6 +15,7 @@ extension CategoryDetailsView {
         var challengeToModify: Challenge?
         var showDeleteAlert: Bool = false
         var showAddModifyChallengeSheet: Bool = false
+        var showNotificationSheet: Bool = false
 
         init(modelContext: ModelContext) {
             self.modelContext = modelContext
@@ -50,6 +51,20 @@ extension CategoryDetailsView {
         func requestEdit(_ challenge: Challenge) {
             challengeToModify = challenge
             showAddModifyChallengeSheet = true
+        }
+
+        func sortedChallenges(for category: ChallengeCategory) -> [Challenge] {
+            guard let queueOrder = category.progress?.challengeQueueOrder,
+                !queueOrder.isEmpty
+            else {
+                return category.challenges
+            }
+
+            return category.challenges.sorted { a, b in
+                let indexA = queueOrder.firstIndex(of: a.id) ?? Int.max
+                let indexB = queueOrder.firstIndex(of: b.id) ?? Int.max
+                return indexA < indexB
+            }
         }
     }
 }
