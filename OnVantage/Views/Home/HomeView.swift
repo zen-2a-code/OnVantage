@@ -15,143 +15,56 @@ struct HomeView: View {
 
     init(modelContext: ModelContext) {
         self._viewModel = State(
-            initialValue: ViewModel(
-                modelContext: modelContext
-            )
+            initialValue: ViewModel(modelContext: modelContext)
         )
+    }
+
+    private var activeCategories: [ChallengeCategory] {
+        viewModel.sortedActiveCategories(from: categories)
     }
 
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {
             ScrollView {
-                ForEach(viewModel.sortedActiveCategories(from: categories)) { category in
-                    VStack {
-                        Text(category.name)
-                            .font(.largeTitle)
-
-                        HStack {
-                            Text(
-                                "Current Streak: \(category.progress?.currentStreak ?? 0)"
-                            )
-                            Text(" | ")
-                            Text(
-                                "Longest Streak: \(category.progress?.longestStreak ?? 0)"
-                            )
-                        }
-                        .foregroundStyle(.secondary)
-
-                        VStack(spacing: 13) {
-                            if viewModel.hasChallengeToday(for: category) {
-                                if let challenge = viewModel.nextChallenge(
-                                    for: category
-                                ) {
-                                    NavigationLink(
-                                        value: challenge
-                                    ) {
-                                        VStack(spacing: 13) {
-                                            Text("Time remaining:")
-                                                .foregroundStyle(.secondary)
-                                            Text(
-                                                viewModel.statusText(
-                                                    for: category
-                                                )
-                                            )
-                                            Image(
-                                                systemName:
-                                                    "hourglass.bottomhalf.filled"
-                                            )
-                                            .foregroundStyle(.secondary)
-                                            .font(.largeTitle)
-                                            .rotationEffect(
-                                                .degrees(
-                                                    viewModel
-                                                        .hourGlassRotationAngle
-                                                )
-                                            )
-                                            HStack(spacing: 10) {
-                                                Button(
-                                                    "Skip (\(category.progress?.skipsRemainingThisCycle ?? 0) left)",
-                                                    role: .destructive
-                                                ) {
-                                                    viewModel.skip(
-                                                        for: category,
-                                                        challenge: challenge
-                                                    )
-                                                }
-                                                .disabled(
-                                                    (category.progress?
-                                                        .skipsRemainingThisCycle
-                                                        ?? 0) == 0
-                                                )
-                                                .padding()
-                                                .background(
-                                                    .white.opacity(0.4)
-                                                )
-                                                .clipShape(
-                                                    .rect(cornerRadius: 20)
-                                                )
-
-                                                Text("Ready?")
-                                                    .padding()
-                                                    .background(
-                                                        .white.opacity(0.4)
-                                                    )
-                                                    .clipShape(
-                                                        .rect(cornerRadius: 20)
-                                                    )
-                                            }
-
-                                        }
-                                    }
-                                }
-                            } else {
-                                VStack(spacing: 13) {
-                                    Text(
-                                        viewModel.statusText(for: category)
-                                    )
-                                    .font(.headline)
-                                    Image(systemName: "hands.and.sparkles")
-                                        .foregroundStyle(.secondary)
-                                        .font(.largeTitle)
-                                    Text("Good job!")
-                                    Text("Or add some more?")
-                                        .foregroundStyle(.secondary)
-                                        .font(.caption2)
+                if activeCategories.isEmpty {
+                    ContentUnavailableView(
+                        "No Active Challenges",
+                        systemImage: "checklist",
+                        description: Text(
+                            "Add a category in the Categories tab to get started."
+                        )
+                    )
+                    .padding(.top, 60)
+                } else {
+                    ForEach(activeCategories) { category in
+                        let challenge = viewModel.nextChallenge(for: category)
+                        HomeCategoryCardView(
+                            category: category,
+                            challenge: challenge,
+                            hasChallenge: viewModel.hasChallengeToday(for: category),
+                            statusText: viewModel.statusText(for: category),
+                            hourGlassRotationAngle: viewModel.hourGlassRotationAngle,
+                            onSkip: {
+                                if let challenge {
+                                    viewModel.skip(for: category, challenge: challenge)
                                 }
                             }
-                        }
-                        .padding()
-                        .frame(width: 300, height: 200)
-                        .background(.thinMaterial)
-                        .cornerRadius(20)
+                        )
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        CategoryGradient(rawValue: category.gradientName)?
-                            .gradient
-                    )
-                    .clipShape(.rect(cornerRadius: 20))
-                    .padding(.horizontal)
                 }
             }
             .navigationTitle("Daily Challenges")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(
-                for: Challenge.self,
-                destination: { challenge in
-                    ChallengeDetailsView(
-                        challenge: challenge,
-                        modelContext: viewModel.modelContext,
-                        onNavigateBackToHomeScreen: {
-                            viewModel.clearNavigation()
-                        }
-                    )
-                }
-            )
+            .navigationDestination(for: Challenge.self) { challenge in
+                ChallengeDetailsView(
+                    challenge: challenge,
+                    modelContext: viewModel.modelContext,
+                    onNavigateBackToHomeScreen: { viewModel.clearNavigation() }
+                )
+            }
             .onAppear {
                 viewModel.tickCountdown()
-                viewModel.sortedActiveCategories(from: categories).forEach { category in
+                activeCategories.forEach { category in
                     if let progress = category.progress {
                         StreakCalculator.evaluateStreakStatus(for: progress)
                     }
@@ -167,6 +80,7 @@ struct HomeView: View {
             }
         }
     }
+
 }
 
 #if DEBUG
@@ -181,16 +95,15 @@ struct HomeView: View {
 
     #Preview {
         let container = PreviewHelper.container
-        UserDefaults.standard.removeObject(forKey: "didSeedV1")
-        SeedImporter.loadSeedData(context: container.mainContext, resource: "seed_swiftui")
+        UserDefaults.standard.removeObject(forKey: "didSeed_seed_swiftui")
+        SeedImporter.loadSeedData(
+            context: container.mainContext,
+            resource: "seed_swiftui"
+        )
 
-        return
-            PreviewHelperView { categories in
-                HomeView(
-                    modelContext: container.mainContext
-                )
-            }
-            .modelContainer(container)
-
+        return PreviewHelperView { _ in
+            HomeView(modelContext: container.mainContext)
+        }
+        .modelContainer(container)
     }
 #endif

@@ -11,7 +11,6 @@ import SwiftUI
 struct AddModifyChallengeView: View {
     @State var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
-    var challenge: Challenge?
 
     init(
         modelContext: ModelContext,
@@ -31,34 +30,37 @@ struct AddModifyChallengeView: View {
         NavigationStack {
             Form {
                 Section {
-                    LabeledContent("Title:") {
-                        TextField(
-                            "Enter title",
-                            text: $viewModel.title,
-                            prompt: Text("Enter title")
-                        )
+                    TextField("Title", text: $viewModel.title)
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Difficulty")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        Picker("Difficulty", selection: $viewModel.difficulty) {
+                            Text("Easy").tag(1)
+                            Text("Medium").tag(2)
+                            Text("Hard").tag(3)
+                        }
+                        .pickerStyle(.segmented)
                     }
-                    Stepper(
-                        "Difficulty: \(viewModel.difficulty)",
-                        value: $viewModel.difficulty,
-                        in: 1...3
-                    )
                 }
                 .listRowBackground(Color.white.opacity(0.7))
 
-                Section("Challenge information") {
-                    VStack {
+                Section("Challenge Information") {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text("Concept Explanation")
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                         TextEditor(text: $viewModel.conceptExplanation)
-                            .frame(minHeight: 30)
+                            .frame(minHeight: 80)
                     }
 
-                    VStack {
-                        Text("Challenge")
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Task Description")
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                         TextEditor(text: $viewModel.taskDescription)
-                            .frame(minHeight: 30)
+                            .frame(minHeight: 80)
                     }
                 }
                 .listRowSeparator(.hidden)
@@ -96,20 +98,30 @@ struct AddModifyChallengeView: View {
                     .disabled(viewModel.isSaveDisabled)
                 }
             }
-
         }
     }
 }
 
-#Preview {
-    let container = PreviewHelper.container
-    let category = PreviewHelper.makeCategory()
-    let challenge = PreviewHelper.makeChallenge(for: category)
-    //        AddModifyChallengeView(modelContext: container.mainContext, category: category)
-    AddModifyChallengeView(
-        modelContext: container.mainContext,
-        category: category,
-        challenge: challenge
-    )
-    .modelContainer(container)
-}
+#if DEBUG
+    #Preview("Add") {
+        let container = PreviewHelper.container
+        let category = PreviewHelper.makeCategory()
+        return AddModifyChallengeView(
+            modelContext: container.mainContext,
+            category: category
+        )
+        .modelContainer(container)
+    }
+
+    #Preview("Edit") {
+        let container = PreviewHelper.container
+        let category = PreviewHelper.makeCategory()
+        let challenge = PreviewHelper.makeChallenge(for: category)
+        return AddModifyChallengeView(
+            modelContext: container.mainContext,
+            category: category,
+            challenge: challenge
+        )
+        .modelContainer(container)
+    }
+#endif

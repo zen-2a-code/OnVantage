@@ -25,31 +25,52 @@ struct ChallengeDetailsView: View {
             )
         )
     }
+
     var body: some View {
         ZStack {
-            CategoryGradient(
-                rawValue: viewModel.challenge.category.gradientName
-            )?.gradient
+            CategoryGradient(rawValue: viewModel.challenge.category.gradientName)?
+                .gradient
                 .ignoresSafeArea()
 
             GeometryReader { proxy in
                 ScrollView {
-                    VStack(spacing: 20) {
-                        HStack {
-                            Image(systemName: "lightbulb.max")
-                                .font(.title)
+                    VStack(spacing: 24) {
 
-                            Text("Concept Explanation")
+                        HStack(spacing: 6) {
+                            ForEach(1...3, id: \.self) { level in
+                                Circle()
+                                    .fill(
+                                        level <= viewModel.challenge.difficulty
+                                            ? Color.primary
+                                            : Color.primary.opacity(0.2)
+                                    )
+                                    .frame(width: 10, height: 10)
+                            }
+                            Text(difficultyLabel)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
                         }
-                        Text(viewModel.challenge.conceptExplanation)
+                        .frame(maxWidth: .infinity, alignment: .leading)
 
-                        HStack {
-                            Image(systemName: "dot.scope")
-                                .font(.title)
-
-                            Text("Challenge:")
+                        VStack(alignment: .leading, spacing: 8) {
+                            Label("Concept", systemImage: "lightbulb.max")
+                                .font(.headline)
+                            Text(viewModel.challenge.conceptExplanation)
+                                .font(.body)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
-                        Text(viewModel.challenge.taskDescription)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                        Divider()
+
+                        VStack(alignment: .leading, spacing: 8) {
+                            Label("Your Task", systemImage: "scope")
+                                .font(.headline)
+                            Text(viewModel.challenge.taskDescription)
+                                .font(.body)
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
 
                         Divider()
 
@@ -59,13 +80,13 @@ struct ChallengeDetailsView: View {
                                 dismiss()
                             }
                         } label: {
-                            Label("Completed", systemImage: "checkmark")
+                            Label("Mark Complete", systemImage: "checkmark")
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.borderedProminent)
                     }
-                    .padding()
-                    .background(.thickMaterial.opacity(0.6))
+                    .padding(24)
+                    .background(.regularMaterial)
                     .cornerRadius(20)
                     .padding(.horizontal, 20)
                     .frame(maxWidth: .infinity, minHeight: proxy.size.height)
@@ -81,6 +102,15 @@ struct ChallengeDetailsView: View {
                 onArchive: viewModel.archiveCategory,
                 onDelete: viewModel.deleteCategory
             )
+        }
+    }
+
+    private var difficultyLabel: String {
+        switch viewModel.challenge.difficulty {
+        case 1: return "Easy"
+        case 2: return "Medium"
+        case 3: return "Hard"
+        default: return ""
         }
     }
 }
@@ -99,7 +129,7 @@ struct ChallengeDetailsView: View {
 
     #Preview {
         let container = PreviewHelper.container
-        UserDefaults.standard.removeObject(forKey: "didSeedV1")
+        UserDefaults.standard.removeObject(forKey: "didSeed_seed_swiftui")
         SeedImporter.loadSeedData(context: container.mainContext, resource: "seed_swiftui")
 
         return NavigationStack {
@@ -114,13 +144,3 @@ struct ChallengeDetailsView: View {
         }
     }
 #endif
-
-//#Preview {
-//    let container = PreviewHelper.container
-//    let category = PreviewHelper.makeCategory()
-//    let challenge = PreviewHelper.makeChallenge(for: category)
-//    NavigationStack {
-//        ChallengeDetailsView(challenge: challenge)
-//    }
-//    .modelContainer(container)
-//}

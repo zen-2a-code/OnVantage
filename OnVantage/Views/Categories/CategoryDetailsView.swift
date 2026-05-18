@@ -18,54 +18,89 @@ struct CategoryDetailsView: View {
             initialValue: ViewModel(modelContext: modelContext)
         )
     }
+
     var body: some View {
         ScrollView {
-            VStack {
-                if let progress = category.progress {
-                    HStack {
-                        Image(systemName: progress.orderModeIcon)
-                        Text("Challenges order - \(progress.orderModeLabel)")
+
+            // MARK: Stats Panel
+            if let progress = category.progress {
+                VStack(spacing: 12) {
+
+                    HStack(spacing: 24) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "flame.fill")
+                                .foregroundStyle(.orange)
+                            Text("\(progress.currentStreak)")
+                            Text("streak")
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack(spacing: 4) {
+                            Image(systemName: "trophy.fill")
+                                .foregroundStyle(.yellow)
+                            Text("\(progress.longestStreak)")
+                            Text("best")
+                                .foregroundStyle(.secondary)
+                        }
+                        HStack(spacing: 4) {
+                            Image(systemName: progress.orderModeIcon)
+                                .foregroundStyle(.secondary)
+                            Text(progress.orderModeLabel)
+                                .foregroundStyle(.secondary)
+                        }
                     }
+                    .font(.subheadline)
 
-                    Text("Cycles completed: \(progress.cyclesCompleted)")
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    if progress.totalChallenges > 0 {
+                        VStack(spacing: 4) {
+                            ProgressView(
+                                value: Double(progress.totalChallengesCompleted),
+                                total: Double(progress.totalChallenges)
+                            )
+                            HStack {
+                                Text(
+                                    "\(progress.totalChallengesCompleted)/\(progress.totalChallenges) this cycle"
+                                )
+                                Spacer()
+                                Text("Cycle \(progress.cycleNumber)")
+                            }
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                        }
+                    }
                 }
-                Text(
-                    "Category created on: \(category.createdAt, format: .dateTime)"
-                )
-                .font(.caption2)
-                .foregroundStyle(.secondary)
-
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(.regularMaterial)
+                .clipShape(.rect(cornerRadius: 20))
+                .padding()
             }
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.white.opacity(0.7))
-            }
-            .padding()
 
-            if !category.challenges.isEmpty {
-                ForEach(category.challenges) { challenge in
-                    ChallengeCardView(
-                        challenge: challenge,
-                        onEdit: { viewModel.requestEdit(challenge) },
-                        onDelete: { viewModel.requestDelete(challenge) }
-                    )
-                }
-
-            } else {
+            // MARK: Challenge List
+            if category.challenges.isEmpty {
                 ContentUnavailableView(
-                    "No challenges",
-                    systemImage: "flag.slash"
+                    "No Challenges",
+                    systemImage: "flag.slash",
+                    description: Text("Tap + to add your first challenge.")
                 )
+                .padding(.top, 20)
+            } else {
+                VStack(spacing: 8) {
+                    ForEach(category.challenges) { challenge in
+                        ChallengeCardView(
+                            challenge: challenge,
+                            onEdit: { viewModel.requestEdit(challenge) },
+                            onDelete: { viewModel.requestDelete(challenge) }
+                        )
+                    }
+                }
+                .padding(.bottom)
             }
         }
         .frame(maxWidth: .infinity)
         .background(
             (CategoryGradient(rawValue: category.gradientName) ?? .fallback)
                 .gradient
+                .ignoresSafeArea()
         )
         .navigationTitle($category.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -109,8 +144,11 @@ struct CategoryDetailsView: View {
 
     #Preview {
         let container = PreviewHelper.container
-        UserDefaults.standard.removeObject(forKey: "didSeedV1")
-        SeedImporter.loadSeedData(context: container.mainContext, resource: "seed_swiftui")
+        UserDefaults.standard.removeObject(forKey: "didSeed_seed_swiftui")
+        SeedImporter.loadSeedData(
+            context: container.mainContext,
+            resource: "seed_swiftui"
+        )
 
         return NavigationStack {
             PreviewHelperView { category in
@@ -122,21 +160,21 @@ struct CategoryDetailsView: View {
             .modelContainer(container)
         }
     }
-#endif
 
-#Preview {
-    let container = PreviewHelper.container
-    let category = PreviewHelper.makeCategory()
-    let _ = { category.gradientName = CategoryGradient.rose.rawValue }()
-    let progress = PreviewHelper.makeProgress(for: category)
-    let _ = { progress.isOrdered = true }()
-    let challenge = PreviewHelper.makeChallenge(for: category)
-    let challenge2 = PreviewHelper.makeChallenge(for: category)
-    NavigationStack {
-        CategoryDetailsView(
-            category: category,
-            modelContext: container.mainContext
-        )
-        .modelContainer(container)
+    #Preview("Manual") {
+        let container = PreviewHelper.container
+        let category = PreviewHelper.makeCategory()
+        let _ = { category.gradientName = CategoryGradient.rose.rawValue }()
+        let progress = PreviewHelper.makeProgress(for: category)
+        let _ = { progress.isOrdered = true }()
+        let _ = PreviewHelper.makeChallenge(for: category)
+        let _ = PreviewHelper.makeChallenge(for: category)
+        return NavigationStack {
+            CategoryDetailsView(
+                category: category,
+                modelContext: container.mainContext
+            )
+            .modelContainer(container)
+        }
     }
-}
+#endif

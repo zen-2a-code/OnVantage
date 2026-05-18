@@ -12,8 +12,6 @@ struct ImportParsedView: View {
     let dto: ImportedCategoryDTO
     @Bindable var viewModel: ImportCategoryView.ViewModel
 
-    private let columns = Array(repeating: GridItem(.flexible()), count: 5)
-
     private var isConfirmDisabled: Bool {
         viewModel.categoryName.trimmingCharacters(in: .whitespaces).count < 3
     }
@@ -29,65 +27,25 @@ struct ImportParsedView: View {
                 }
                 .padding()
                 .background(.thinMaterial)
-                .cornerRadius(16)
+                .clipShape(.rect(cornerRadius: 16))
 
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Color")
                         .font(.headline)
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(CategoryGradient.allCases) { gradient in
-                            Circle()
-                                .fill(gradient.gradient)
-                                .frame(width: 44, height: 44)
-                                .overlay(
-                                    viewModel.selectedGradient == gradient
-                                        ? Circle().stroke(.black, lineWidth: 3)
-                                        : nil
-                                )
-                                .onTapGesture {
-                                    viewModel.selectedGradient = gradient
-                                }
-                        }
-                    }
+                    GradientPickerView(selection: $viewModel.selectedGradient)
                 }
                 .padding()
                 .background(.thinMaterial)
-                .cornerRadius(16)
+                .clipShape(.rect(cornerRadius: 16))
 
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Icon")
                         .font(.headline)
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(AppConstants.categoryIcons, id: \.self) {
-                            icon in
-                            let isSelected = viewModel.selectedIconName == icon
-                            Image(systemName: icon)
-                                .font(.title2)
-                                .frame(width: 44, height: 44)
-                                .background(
-                                    isSelected
-                                        ? Color.accentColor.opacity(0.15)
-                                        : Color.clear
-                                )
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                .overlay(
-                                    isSelected
-                                        ? RoundedRectangle(cornerRadius: 8)
-                                            .stroke(
-                                                Color.accentColor,
-                                                lineWidth: 2
-                                            )
-                                        : nil
-                                )
-                                .onTapGesture {
-                                    viewModel.selectedIconName = icon
-                                }
-                        }
-                    }
+                    IconPickerView(selection: $viewModel.selectedIconName)
                 }
                 .padding()
                 .background(.thinMaterial)
-                .cornerRadius(16)
+                .clipShape(.rect(cornerRadius: 16))
 
                 VStack(alignment: .leading, spacing: 12) {
                     HStack {
@@ -143,7 +101,7 @@ struct ImportParsedView: View {
                 }
                 .padding()
                 .background(.thinMaterial)
-                .cornerRadius(16)
+                .clipShape(.rect(cornerRadius: 16))
 
                 HStack(spacing: 12) {
                     Button("Cancel") { viewModel.reset() }

@@ -13,8 +13,8 @@ extension AddCategoryView {
     class ViewModel {
         var modelContext: ModelContext
         var name: String = ""
-        var gradientName: String = "sunset"
-        var iconName: String = "star.fill"
+        var selectedGradient: CategoryGradient = .sunset
+        var selectedIconName: String = "star.fill"
         var isShuffleEnabled = false
 
         init(modelContext: ModelContext) {
@@ -22,14 +22,14 @@ extension AddCategoryView {
         }
 
         func isAddNewCategoryDisabled() -> Bool {
-            !(name.count >= 3 && !gradientName.isEmpty && !iconName.isEmpty)
+            !(name.count >= 3 && !selectedIconName.isEmpty)
         }
 
         func addNewCategory() {
             let newCategory = ChallengeCategory(
                 name: name,
-                gradientName: gradientName,
-                iconName: iconName,
+                gradientName: selectedGradient.rawValue,
+                iconName: selectedIconName,
                 isActive: true,
                 isUserCreated: true,
                 createdAt: .now

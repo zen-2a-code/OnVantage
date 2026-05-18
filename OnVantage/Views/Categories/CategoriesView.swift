@@ -20,6 +20,16 @@ struct CategoriesView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
+                if categories.isEmpty {
+                    ContentUnavailableView(
+                        "No Categories Yet",
+                        systemImage: "square.grid.2x2",
+                        description: Text(
+                            "Tap + to add your first category or import one from JSON."
+                        )
+                    )
+                    .padding(.top, 60)
+                }
                 ForEach(categories) { category in
                     @Bindable var category = category
                     NavigationLink(value: category) {

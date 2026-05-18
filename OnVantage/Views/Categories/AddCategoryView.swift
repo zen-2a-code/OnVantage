@@ -20,59 +20,51 @@ struct AddCategoryView: View {
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $viewModel.name)
-                Toggle(
-                    "Random challenge order",
-                    isOn: $viewModel.isShuffleEnabled
-                )
+                Section {
+                    TextField("Name", text: $viewModel.name)
+                    Toggle("Random challenge order", isOn: $viewModel.isShuffleEnabled)
+                }
 
                 Section("Style") {
-                    Picker("Category icon", selection: $viewModel.iconName) {
-                        ForEach(AppConstants.categoryIcons, id: \.self) {
-                            currentIcon in
-                            Label(
-                                currentIcon.split(separator: ".").first.map {
-                                    $0.capitalized
-                                } ?? "",
-                                systemImage: currentIcon
-                            )
-                            .tag(currentIcon)
-                        }
+                    Text("Icon")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    IconPickerView(selection: $viewModel.selectedIconName)
+                        .padding(.vertical, 4)
+
+                    Text("Color")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    GradientPickerView(selection: $viewModel.selectedGradient)
+                        .padding(.vertical, 4)
+                }
+                .listRowSeparator(.hidden)
+            }
+            .navigationTitle("Add Category")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundStyle(.red)
                     }
-                    .pickerStyle(.wheel)
+                }
 
-                    let columns = Array(
-                        repeating: GridItem(.flexible()),
-                        count: 5
-                    )
-
-                    Text("Category color")
-                    LazyVGrid(columns: columns) {
-                        ForEach(CategoryGradient.allCases) { gradient in
-                            Circle()
-                                .fill(gradient.gradient)
-                                .frame(width: 44)
-                                .overlay(
-                                    gradient.rawValue == viewModel.gradientName
-                                        ? Circle().stroke(.black, lineWidth: 3)
-                                        : nil
-                                )
-                                .onTapGesture {
-                                    viewModel.gradientName = gradient.rawValue
-                                }
-                        }
-                    }
-
-                    Button("Add") {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
                         viewModel.addNewCategory()
                         dismiss()
+                    } label: {
+                        Image(systemName: "checkmark")
+                            .foregroundStyle(
+                                viewModel.isAddNewCategoryDisabled() ? .gray : .green
+                            )
                     }
                     .disabled(viewModel.isAddNewCategoryDisabled())
-
                 }
             }
-            .navigationTitle("Add new category")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -12,61 +12,57 @@ struct ChallengeCardView: View {
     @Bindable var challenge: Challenge
     let onEdit: () -> Void
     let onDelete: () -> Void
-    var body: some View {
-        VStack(alignment: .center, spacing: 15) {
-            VStack {
-                Text(challenge.title)
-                    .font(.title3)
-                    .fontDesign(.monospaced)
-                    .multilineTextAlignment(.center)
 
-                Text("Difficulty: \(challenge.difficulty) of 3")
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+
+            // MARK: Difficulty dots
+            VStack(spacing: 4) {
+                ForEach(1...3, id: \.self) { level in
+                    Circle()
+                        .fill(
+                            level <= challenge.difficulty
+                                ? Color.primary
+                                : Color.primary.opacity(0.15)
+                        )
+                        .frame(width: 9, height: 9)
+                }
+            }
+            .padding(.top, 4)
+
+            // MARK: Content
+            VStack(alignment: .leading, spacing: 4) {
+                Text(challenge.title)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+
+                Text(challenge.taskDescription)
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                    .lineLimit(2)
             }
-            Divider()
 
-            VStack(spacing: 6) {
-                Text("Concept Explanation")
-                    .fontDesign(.serif)
+            Spacer()
+
+            // MARK: Edit button
+            Button {
+                onEdit()
+            } label: {
+                Image(systemName: "pencil")
                     .font(.subheadline)
-                Text(challenge.conceptExplanation)
-
+                    .foregroundStyle(.secondary)
             }
-
-            VStack(spacing: 6) {
-                Text("Challenge")
-                    .fontDesign(.serif)
-                    .font(.title2)
-                Text(challenge.taskDescription)
-                    .font(.body)
-            }
-
-            Divider()
-            HStack(spacing: 25) {
-                Button {
-                    onEdit()
-                } label: {
-                    Label("Edit", systemImage: "pencil")
-                }
-
-                Button(role: .destructive) {
-                    onDelete()
-                } label: {
-                    HStack {
-                        Image(systemName: "trash")
-                        Text("Delete")
-                    }
-
-                }
-            }
+            .buttonStyle(.plain)
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white.opacity(0.7))
-        )
-        .padding()
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+        .background(.regularMaterial)
+        .clipShape(.rect(cornerRadius: 14))
+        .padding(.horizontal)
+        .contextMenu {
+            Button("Edit") { onEdit() }
+            Button("Delete", role: .destructive) { onDelete() }
+        }
     }
 }
 
@@ -84,8 +80,11 @@ struct ChallengeCardView: View {
 
     #Preview {
         let container = PreviewHelper.container
-        UserDefaults.standard.removeObject(forKey: "didSeedV1")
-        SeedImporter.loadSeedData(context: container.mainContext, resource: "seed_swiftui")
+        UserDefaults.standard.removeObject(forKey: "didSeed_seed_swiftui")
+        SeedImporter.loadSeedData(
+            context: container.mainContext,
+            resource: "seed_swiftui"
+        )
 
         return NavigationStack {
             PreviewHelperView { challenge in
@@ -100,11 +99,3 @@ struct ChallengeCardView: View {
         }
     }
 #endif
-
-#Preview {
-    var container = PreviewHelper.container
-    var category = PreviewHelper.makeCategory()
-    var challenge = PreviewHelper.makeChallenge(for: category)
-    ChallengeCardView(challenge: challenge, onEdit: {}, onDelete: {})
-        .modelContainer(container)
-}

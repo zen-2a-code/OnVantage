@@ -16,69 +16,71 @@ struct CategoryCardView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
             .fill(
-                (CategoryGradient(
-                    rawValue: category.gradientName
-                ) ?? .fallback).gradient
-            ).grayscale(category.isActive ? 0 : 1.0)
-            .shadow(radius: 10)
-            .frame(height: 160)
+                (CategoryGradient(rawValue: category.gradientName) ?? .fallback)
+                    .gradient
+            )
+            .grayscale(category.isActive ? 0 : 1.0)
+            .shadow(radius: 6)
+            .frame(height: 150)
             .overlay {
-                VStack(spacing: 5) {
+                VStack(alignment: .leading, spacing: 10) {
+
+                    // MARK: Name + Toggle
                     HStack {
+                        Image(systemName: category.iconName)
+                            .font(.title2)
                         Text(category.name)
-                            .font(.largeTitle)
-                            .minimumScaleFactor(0.5)
+                            .font(.title3)
+                            .fontWeight(.semibold)
                             .lineLimit(1)
-
-                        Button("Delete", role: .destructive) {
-                            onRequestDelete()
-                        }
-                        .font(.caption2)
-                        .buttonStyle(.borderedProminent)
-                        .bold()
-                        .foregroundStyle(.white)
-
                         Spacer()
-
-                        Image(systemName: "bell.fill")
-                            .symbolRenderingMode(.palette)
-                            .foregroundStyle(.yellow)
-                            .font(.title)
-                    }
-
-                    VStack(spacing: 10) {
-                        HStack(spacing: 20) {
-                            Toggle(
-                                "Active",
-                                isOn: $category.isActive
-                            )
-                            .frame(width: 120)
-                            .scaleEffect(0.8)
-                            .frame(width: 120 * 0.8)
+                        Toggle("", isOn: $category.isActive)
+                            .labelsHidden()
+                            .tint(.white.opacity(0.8))
                             .onChange(of: category.isActive) { _, newValue in
                                 onSetActive(newValue)
                             }
+                    }
 
-                            Spacer()
+                    // MARK: Streaks
+                    HStack(spacing: 14) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "flame.fill")
+                                .foregroundStyle(.orange)
+                            Text("\(category.progress?.currentStreak ?? 0)")
                         }
+                        HStack(spacing: 4) {
+                            Image(systemName: "trophy.fill")
+                                .foregroundStyle(.yellow)
+                            Text("\(category.progress?.longestStreak ?? 0)")
+                        }
+                    }
+                    .font(.subheadline)
 
-                        HStack(spacing: 10) {
-                            Image(systemName: category.iconName)
-                                .font(.title2)
-                            if let progress = category.progress {
-                                Text(
-                                    "Challenges \(progress.totalChallengesCompleted)/\(progress.totalChallenges)"
-                                )
-                                .foregroundStyle(.secondary)
-                            } else {
-                                Text(
-                                    "Challenges 0/\(category.challenges.count)"
-                                )
-                            }
+                    // MARK: Progress
+                    if let progress = category.progress,
+                        progress.totalChallenges > 0
+                    {
+                        HStack(spacing: 8) {
+                            ProgressView(
+                                value: Double(progress.totalChallengesCompleted),
+                                total: Double(progress.totalChallenges)
+                            )
+                            .tint(.white)
+                            Text(
+                                "\(progress.totalChallengesCompleted)/\(progress.totalChallenges)"
+                            )
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
                         }
                     }
                 }
                 .padding()
+            }
+            .contextMenu {
+                Button("Delete", role: .destructive) {
+                    onRequestDelete()
+                }
             }
     }
 }
@@ -96,9 +98,9 @@ struct CategoryCardView: View {
 
     CategoryCardView(
         category: category,
-        onRequestDelete: {
-        },
-        onSetActive: { isActive in }
+        onRequestDelete: {},
+        onSetActive: { _ in }
     )
+    .padding()
     .modelContainer(PreviewHelper.container)
 }
